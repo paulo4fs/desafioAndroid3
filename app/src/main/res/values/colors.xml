@@ -6,8 +6,10 @@
     <color name="colorRed">#EA2427</color>
     <color name="colorRedDark">#BB1C1F</color>
     <color name="colorWhite">#FFF</color>
-    <color name="colorBlack">#1F2D3D</color>
+    <color name="colorBlack">#00162C</color>
+    <color name="colorBlueDark">#1F2D3D</color>
     <color name="colorGray">#C0CCDA</color>
     <color name="colorGrayDark">#47525E</color>
     <color name="colorTransparent">#00000000</color>
+    <color name="colorBlueDark2">#343F4B</color>
 </resources>

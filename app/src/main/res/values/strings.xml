@@ -2,4 +2,13 @@
     <string name="app_name">MarvelApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="welcome_marvel">Welcome to the Marvel HQ\'s</string>
+    <string name="log_in">Log in</string>
+    <string name="create_account">Create account</string>
+    <string name="remember">Remember</string>
+    <string name="name">Name</string>
+    <string name="save">Save</string>
+    <string name="photo_area">photo area</string>
 </resources>
