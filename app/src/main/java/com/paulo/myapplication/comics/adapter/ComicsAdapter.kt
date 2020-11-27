@@ -1,4 +1,4 @@
-package com.paulo.myapplication.comics.view
+package com.paulo.myapplication.comics.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -20,7 +20,7 @@ class ComicsAdapter(
     override fun onBindViewHolder(holder: ComicsViewHolder, position: Int) {
         val item = comics[position]
 
-        val imageJoin = item.thumbnail.path + "/portrait_xlarge." + item.thumbnail.extension
+        val imageJoin = item.images[0].path + "/portrait_xlarge." + item.images[0].extension
 
         val issue = item.issueNumber
 

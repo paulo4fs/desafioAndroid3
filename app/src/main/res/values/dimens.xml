@@ -17,4 +17,5 @@
     <dimen name="dim25sp">25sp</dimen>
     <dimen name="dim28sp">28sp</dimen>
     <dimen name="dim30sp">30sp</dimen>
+    <dimen name="dim24sp">24sp</dimen>
 </resources>
