@@ -32,7 +32,7 @@ class SignupFragment : Fragment() {
 
         val backBtn = view.findViewById<ImageButton>(R.id.btnBackbtnSignup)
         backBtn.setOnClickListener {
-            var navController = findNavController()
+            val navController = findNavController()
             navController.navigate(R.id.action_signupFragment_to_loginFragment)
         }
     }

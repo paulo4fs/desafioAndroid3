@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/tvImageComic"
+            android:id="@+id/ivImageComic"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:background="@color/colorRed" />
@@ -31,7 +31,7 @@
             android:padding="@dimen/dim5dp">
 
             <ImageView
-                android:id="@+id/tvThumbnailComic"
+                android:id="@+id/ivThumbnailComic"
                 android:layout_width="140dp"
                 android:layout_height="180dp"
                 android:scaleType="fitXY"
@@ -39,6 +39,7 @@
         </LinearLayout>
 
         <ImageButton
+            android:id="@+id/ibBackbuttonComic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dim10dp"
@@ -82,7 +83,6 @@
                 android:id="@+id/tvDescriptionComic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/colorWhite"
                 tools:text="@tools:sample/lorem/random" />
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dim20dp"
                 android:fontFamily="@font/roboto"
-                android:text="Published: "
+                android:text="@string/published_"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold" />
 
@@ -117,8 +117,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
-                android:text="April 30, 2014"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorWhite"
+                tools:text="April 30, 2014" />
         </LinearLayout>
 
         <LinearLayout
@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dim20dp"
                 android:fontFamily="@font/roboto"
-                android:text="Price: "
+                android:text="@string/price_"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold" />
 
@@ -140,8 +140,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
-                android:text="$ 5,99"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorWhite"
+                tools:text="$ 5,99" />
         </LinearLayout>
 
         <LinearLayout
@@ -162,8 +162,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
-                android:text="38"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorWhite"
+                tools:text="38" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
