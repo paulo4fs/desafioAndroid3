@@ -14,9 +14,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.paulo.myapplication.R
 import com.paulo.myapplication.comics.adapter.ComicsAdapter
 import com.paulo.myapplication.comics.model.ComicModel
+import com.paulo.myapplication.comics.model.DateModel
 import com.paulo.myapplication.comics.repository.ComicsRepository
 import com.paulo.myapplication.comics.viewmodel.ComicsViewModel
 import com.paulo.myapplication.comics.viewmodel.ComicsViewModelFactory
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class ComicsFragment : Fragment() {
     private lateinit var _view: View
@@ -48,7 +52,8 @@ class ComicsFragment : Fragment() {
         _listaDeComics = mutableListOf()
         _comicsAdapter = ComicsAdapter(_listaDeComics) {
             Toast.makeText(view.context, "Issue: ${it.issueNumber}", Toast.LENGTH_SHORT).show()
-            _comicsViewModel.setComic(it)
+
+            val date = dateEditor(it.dates)
 
             val bundle = bundleOf(
                 "imagePath" to it.images[0].path,
@@ -57,7 +62,7 @@ class ComicsFragment : Fragment() {
                 "thumbnailExtension" to it.thumbnail.extension,
                 "price" to it.prices[0].price,
                 "description" to it.description,
-                "date" to it.dates[0].date.time,
+                "date" to date,
                 "title" to it.title,
                 "pageCount" to it.pageCount
             )
@@ -82,15 +87,25 @@ class ComicsFragment : Fragment() {
         val hash = "06a90a70b6362cdb5021e65d2b183dcc"
         val titleStartsWith = "spider"
 
-        _comicsViewModel.obterLista(ts, apikey, hash, titleStartsWith).observe(viewLifecycleOwner, {
-            exibirLista(it)
-        })
+        _comicsViewModel.obterLista(ts, apikey, hash, titleStartsWith)
+            .observe(viewLifecycleOwner, {
+                exibirLista(it)
+            })
     }
+
 
     private fun exibirLista(lista: List<ComicModel>) {
         lista.let {
             _listaDeComics.addAll(it)
             _comicsAdapter.notifyDataSetChanged()
         }
+    }
+
+    private fun dateEditor(dates: List<DateModel>): String {
+        val pattern = "MMMM-dd-yyyy"
+        val simpleDateFormat = SimpleDateFormat(pattern)
+        var date = simpleDateFormat.format(dates[dates.size - 1].date)
+        val dateSplit = date.split('-')
+        return "${dateSplit[0]} ${dateSplit[1]}, ${dateSplit[2]}"
     }
 }

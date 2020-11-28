@@ -11,7 +11,6 @@ class ComicsViewModel(
     private val repository: ComicsRepository
 ) : ViewModel() {
     private lateinit var _comics: List<ComicModel>
-    var _comic = MutableLiveData<ComicModel>()
 
     fun obterLista(
         ts: String,
@@ -31,10 +30,4 @@ class ComicsViewModel(
 
         emit(_comics)
     }
-
-    fun setComic(comic: ComicModel) {
-        _comic.value = comic
-        val d = 1
-    }
-
 }

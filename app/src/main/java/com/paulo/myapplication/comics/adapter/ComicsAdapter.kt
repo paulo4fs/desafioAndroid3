@@ -20,7 +20,10 @@ class ComicsAdapter(
     override fun onBindViewHolder(holder: ComicsViewHolder, position: Int) {
         val item = comics[position]
 
-        val imageJoin = item.images[0].path + "/portrait_xlarge." + item.images[0].extension
+        val portraitMedium = "/portrait_medium."
+
+        val imageJoin =
+            item.images[0].path + portraitMedium + item.images[0].extension
 
         val issue = item.issueNumber
 

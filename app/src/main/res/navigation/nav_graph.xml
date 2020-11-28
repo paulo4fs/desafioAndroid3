@@ -9,7 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="com.paulo.myapplication.login.view.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment"
@@ -22,7 +22,7 @@
         android:id="@+id/signupFragment"
         android:name="com.paulo.myapplication.signup.view.SignupFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" >
+        tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -32,16 +32,17 @@
         android:id="@+id/comicsFragment"
         android:name="com.paulo.myapplication.comics.view.ComicsFragment"
         android:label="fragment_comics"
-        tools:layout="@layout/fragment_comics" >
+        tools:layout="@layout/fragment_comics">
         <action
             android:id="@+id/action_comicsFragment_to_comicFragment"
-            app:destination="@id/comicFragment" />
+            app:destination="@id/comicFragment"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/comicFragment"
         android:name="com.paulo.myapplication.comic.view.ComicFragment"
         android:label="fragment_comic"
-        tools:layout="@layout/fragment_comic" >
+        tools:layout="@layout/fragment_comic">
         <action
             android:id="@+id/action_comicFragment_to_comicsFragment"
             app:destination="@id/comicsFragment" />
@@ -49,13 +50,13 @@
             android:id="@+id/action_comicFragment_to_coverFragment"
             app:destination="@id/coverFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/coverFragment"
         android:name="com.paulo.myapplication.comic.view.CoverFragment"
         android:label="fragment_cover"
-        tools:layout="@layout/fragment_cover" >
+        tools:layout="@layout/fragment_cover">
         <action
             android:id="@+id/action_coverFragment_to_comicFragment"
             app:destination="@id/comicFragment" />
-    </fragment>
+    </dialog>
 </navigation>

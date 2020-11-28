@@ -10,13 +10,8 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.paulo.myapplication.R
-import com.paulo.myapplication.comics.model.ComicModel
-import com.paulo.myapplication.comics.repository.ComicsRepository
-import com.paulo.myapplication.comics.viewmodel.ComicsViewModel
-import com.paulo.myapplication.comics.viewmodel.ComicsViewModelFactory
 import com.squareup.picasso.Picasso
 
 class ComicFragment : Fragment() {
@@ -39,6 +34,7 @@ class ComicFragment : Fragment() {
         _view = view
         setData()
         backBtn()
+        thumbnailBtn()
     }
 
     private fun setData() {
@@ -46,27 +42,41 @@ class ComicFragment : Fragment() {
         val imageExtension = arguments?.getString("imageExtension")
         val thumbnailPath = arguments?.getString("thumbnailPath")
         val thumbnailExtension = arguments?.getString("thumbnailExtension")
-        val price = arguments?.getInt("price")
+        val price = arguments?.getFloat("price")
         val description = arguments?.getString("description")
         val title = arguments?.getString("title")
         val pageCount = arguments?.getInt("pageCount")
+        val date = arguments?.getString("date")
 
-        val image = imagePath + getString(R.string.landscape_incredible) + imageExtension
+        val image = imagePath + "/portrait_medium." + imageExtension
         val thumbnail = thumbnailPath + getString(R.string.portrait_incredible) + thumbnailExtension
 
-        val thumbnailImage = _view.findViewById<ImageView>(R.id.ivThumbnailComic)
+        val thumbnailImage = _view.findViewById<ImageButton>(R.id.ibThumbnailComic)
         val coverImage = _view.findViewById<ImageView>(R.id.ivImageComic)
         val priceText = _view.findViewById<TextView>(R.id.tvPriceComic)
         val descriptionText = _view.findViewById<TextView>(R.id.tvDescriptionComic)
         val titleText = _view.findViewById<TextView>(R.id.tvTitleComic)
         val pageCountText = _view.findViewById<TextView>(R.id.tvPagecountComic)
+        val dateText = _view.findViewById<TextView>(R.id.tvDateComic)
 
-        priceText.text = "$ " + price.toString()
+        priceText.text = "$ ${price}"
         descriptionText.text = description
         titleText.text = title
         pageCountText.text = pageCount.toString()
-        Picasso.get().load(image).into(coverImage)
-        Picasso.get().load(thumbnail).into(thumbnailImage)
+        dateText.text = date
+
+        Log.d("imagem", image)
+
+        Picasso.get()
+            .load(R.drawable.landscape_incredible)
+            .into(coverImage)
+
+        Picasso.get()
+            .load(R.drawable.portrait_incredible)
+            .into(thumbnailImage)
+
+//        Glide.with(_view).load(image).into(coverImage)
+//        Glide.with(_view).load(thumbnail).into(thumbnailImage)
     }
 
     private fun backBtn() {
@@ -74,6 +84,17 @@ class ComicFragment : Fragment() {
         backBtn.setOnClickListener {
             val navController = findNavController()
             navController.navigate(R.id.action_comicFragment_to_comicsFragment)
+        }
+    }
+
+    private fun thumbnailBtn() {
+        val thumbnailBtn = _view.findViewById<ImageButton>(R.id.ibThumbnailComic)
+
+        val bundle = bundleOf("image" to R.drawable.portrait_incredible)
+
+        thumbnailBtn.setOnClickListener {
+            val navController = findNavController()
+            navController.navigate(R.id.action_comicFragment_to_coverFragment, bundle)
         }
     }
 }
