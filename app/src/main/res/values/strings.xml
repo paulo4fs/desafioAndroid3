@@ -19,4 +19,5 @@
     <string name="portrait_incredible">/portrait_incredible.</string>
     <string name="landscape_incredible">/landscape_incredible.</string>
     <string name="error_vazio">Campo vazio</string>
+    <string name="conta_criada">Conta criada com sucesso</string>
 </resources>
