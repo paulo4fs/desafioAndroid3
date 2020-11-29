@@ -40,6 +40,8 @@ class CoverFragment : Fragment() {
 
         Picasso.get()
             .load(thumbnail)
+            .fit()
+            .centerCrop()
             .error(R.drawable.noimage)
             .into(imageView)
     }

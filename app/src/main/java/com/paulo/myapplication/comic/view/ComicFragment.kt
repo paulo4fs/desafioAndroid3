@@ -82,11 +82,15 @@ class ComicFragment : Fragment() {
 
             Picasso.get()
                 .load(imageUrl)
+                .fit()
+                .centerCrop()
                 .error(R.drawable.noimage)
                 .into(coverImage)
         } else {
             Picasso.get()
                 .load(R.drawable.noimage)
+                .fit()
+                .centerCrop()
                 .into(coverImage)
         }
 
@@ -95,6 +99,8 @@ class ComicFragment : Fragment() {
 
         Picasso.get()
             .load(thumbnail)
+            .fit()
+            .centerCrop()
             .error(R.drawable.noimage)
             .into(thumbnailImage)
     }

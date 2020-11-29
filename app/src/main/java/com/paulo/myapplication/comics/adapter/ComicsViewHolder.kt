@@ -17,6 +17,8 @@ class ComicsViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         Picasso.get()
             .load(thumbnail)
+            .fit()
+            .centerCrop()
             .error(R.drawable.noimage)
             .into(_imageView)
     }
