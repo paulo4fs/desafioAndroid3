@@ -73,7 +73,7 @@ class ComicFragment : Fragment() {
         descriptionText.text = comic.description
         titleText.text = comic.title
         pageCountText.text = comic.pageCount.toString()
-        dateText.text = comic.dates[0].date.split('T')[0]
+        dateText.text = comic.dates[1].date
 
         if (comic.images.isNotEmpty()) {
             val lastImage = comic.images.size - 1

@@ -50,12 +50,17 @@ class ComicViewModel(
     }
 
     private fun dateFix() {
-        var dateString = comic.dates[0].date.split('T')[0]
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            val parsedDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-            val formattedDate =
-                parsedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
-            comic.dates[0].date = formattedDate
+        if (comic.dates[1].date.startsWith('-')) {
+            comic.dates[1].date = "date undefined"
+        } else {
+            val dateString = comic.dates[1].date.split('T')[0]
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                val parsedDate =
+                    LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                val formattedDate =
+                    parsedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
+                comic.dates[1].date = formattedDate
+            }
         }
     }
 }
