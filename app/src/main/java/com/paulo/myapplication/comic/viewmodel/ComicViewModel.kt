@@ -5,6 +5,9 @@ import androidx.lifecycle.liveData
 import com.paulo.myapplication.data.repository.ComicRepository
 import com.paulo.myapplication.data.model.ComicModel
 import kotlinx.coroutines.Dispatchers
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 class ComicViewModel(
     private val repository: ComicRepository
@@ -22,10 +25,13 @@ class ComicViewModel(
         )
 
         comic = response.data.results[0]
+
         imageFix()
+        dateFix()
 
         emit(comic)
     }
+
 
     private fun imageFix() {
         comic.thumbnail.path = comic.thumbnail.path.replace(
@@ -40,6 +46,16 @@ class ComicViewModel(
                     "https://"
                 )
             }
+        }
+    }
+
+    private fun dateFix() {
+        var dateString = comic.dates[0].date.split('T')[0]
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val parsedDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+            val formattedDate =
+                parsedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
+            comic.dates[0].date = formattedDate
         }
     }
 }

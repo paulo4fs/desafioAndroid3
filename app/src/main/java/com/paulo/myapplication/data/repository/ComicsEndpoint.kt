@@ -12,7 +12,6 @@ interface ComicsEndpoint {
         @Query("apikey") apikey: String,
         @Query("hash") hash: String,
     ): ResponseModel
-//        @Query("characters") characters: String
 
     companion object {
         val endpoint: ComicsEndpoint by lazy {

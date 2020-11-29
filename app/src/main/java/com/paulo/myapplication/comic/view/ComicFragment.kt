@@ -56,12 +56,6 @@ class ComicFragment : Fragment() {
             exibirItem(it)
         })
 
-        val thumbnail = (
-                thumbnailPathArgument +
-                        getString(R.string.portrait_incredible) +
-                        thumbnailExtensionArgument
-                )
-
         backBtn()
         thumbnailBtn(idArgument, thumbnailPathArgument!!, thumbnailExtensionArgument!!)
     }

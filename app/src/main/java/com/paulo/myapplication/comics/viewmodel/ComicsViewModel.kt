@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 class ComicsViewModel(
     private val repository: ComicsRepository
 ) : ViewModel() {
-    private var _comics = mutableListOf<ComicModel>()
+    private var _comics = listOf<ComicModel>()
 
     fun obterLista(
         ts: String,
