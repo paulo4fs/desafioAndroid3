@@ -4,5 +4,5 @@ import java.util.*
 
 data class DateModel(
     val type: String,
-    val date: Date
+    val date: String
 )

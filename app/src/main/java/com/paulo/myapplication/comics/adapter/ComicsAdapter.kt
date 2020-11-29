@@ -22,12 +22,18 @@ class ComicsAdapter(
 
         val portraitMedium = "/portrait_medium."
 
-        val imageJoin =
-            item.images[0].path + portraitMedium + item.images[0].extension
-
         val issue = item.issueNumber
 
-        holder.bind(imageJoin, issue)
+        if (item.images.isNotEmpty()) {
+            val imageJoin =
+                item.images[0].path + portraitMedium + item.images[0].extension
+
+
+            holder.bind(imageJoin, issue)
+        } else {
+            holder.bind("", issue)
+        }
+
 
         holder.itemView.setOnClickListener { listener(item) }
     }

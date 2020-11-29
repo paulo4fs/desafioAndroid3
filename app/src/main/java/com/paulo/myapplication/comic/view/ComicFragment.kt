@@ -1,8 +1,6 @@
 package com.paulo.myapplication.comic.view
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +8,18 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.paulo.myapplication.R
-import com.squareup.picasso.Picasso
+import com.paulo.myapplication.comic.repository.ComicRepository
+import com.paulo.myapplication.comic.viewmodel.ComicViewModel
+import com.paulo.myapplication.comic.viewmodel.ComicViewModelFactory
+import com.paulo.myapplication.comics.model.ComicModel
 
 class ComicFragment : Fragment() {
     private lateinit var _view: View
+    private lateinit var _comicViewModel: ComicViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,12 +36,43 @@ class ComicFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _view = view
-        setData()
+
+        val idArgument = arguments?.getInt("id")!!
+
+        _comicViewModel = ViewModelProvider(
+            this,
+            ComicViewModelFactory(ComicRepository())
+        ).get(ComicViewModel::class.java)
+
+        val ts = "1606439381833"
+        val apikey = "d5eb389c4ed264949086922b7b0c3545"
+        val hash = "06a90a70b6362cdb5021e65d2b183dcc"
+
+        _comicViewModel.obterItem(idArgument, ts, apikey, hash).observe(viewLifecycleOwner, {
+            exibirItem(it)
+        })
+
         backBtn()
-        thumbnailBtn()
+        thumbnailBtn(idArgument)
     }
 
-    private fun setData() {
+    private fun exibirItem(it: ComicModel) {
+        val thumbnailImage = _view.findViewById<ImageButton>(R.id.ibThumbnailComic)
+        val coverImage = _view.findViewById<ImageView>(R.id.ivImageComic)
+        val priceText = _view.findViewById<TextView>(R.id.tvPriceComic)
+        val descriptionText = _view.findViewById<TextView>(R.id.tvDescriptionComic)
+        val titleText = _view.findViewById<TextView>(R.id.tvTitleComic)
+        val pageCountText = _view.findViewById<TextView>(R.id.tvPagecountComic)
+        val dateText = _view.findViewById<TextView>(R.id.tvDateComic)
+
+        priceText.text = "$ ${it.prices[0].price}"
+        descriptionText.text = it.description
+        titleText.text = it.title
+        pageCountText.text = it.pageCount.toString()
+        dateText.text = it.dates[0].date.split('T')[0]
+    }
+
+    /*private fun setData() {
         val imagePath = arguments?.getString("imagePath")
         val imageExtension = arguments?.getString("imageExtension")
         val thumbnailPath = arguments?.getString("thumbnailPath")
@@ -72,12 +107,9 @@ class ComicFragment : Fragment() {
             .into(coverImage)
 
         Picasso.get()
-            .load(R.drawable.portrait_incredible)
+            .load("http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_xlarge.jpg")
             .into(thumbnailImage)
-
-//        Glide.with(_view).load(image).into(coverImage)
-//        Glide.with(_view).load(thumbnail).into(thumbnailImage)
-    }
+    }*/
 
     private fun backBtn() {
         val backBtn = _view.findViewById<ImageButton>(R.id.ibBackbuttonComic)
@@ -87,10 +119,10 @@ class ComicFragment : Fragment() {
         }
     }
 
-    private fun thumbnailBtn() {
+    private fun thumbnailBtn(id: Int) {
         val thumbnailBtn = _view.findViewById<ImageButton>(R.id.ibThumbnailComic)
 
-        val bundle = bundleOf("image" to R.drawable.portrait_incredible)
+        val bundle = bundleOf("image" to R.drawable.portrait_incredible, "id" to id)
 
         thumbnailBtn.setOnClickListener {
             val navController = findNavController()

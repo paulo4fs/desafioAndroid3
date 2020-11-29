@@ -10,23 +10,24 @@ import kotlinx.coroutines.Dispatchers
 class ComicsViewModel(
     private val repository: ComicsRepository
 ) : ViewModel() {
-    private lateinit var _comics: List<ComicModel>
+    private var _comics: List<ComicModel> = listOf()
 
+    //        characters: String
     fun obterLista(
         ts: String,
         apikey: String,
-        hash: String,
-        titleStarsWith: String
+        hash: String
     ) = liveData(Dispatchers.IO) {
-        val response = repository
-            .obterLista(
-                ts,
-                apikey,
-                hash,
-                titleStarsWith
-            )
-
-        _comics = response.data.results
+        if (_comics.isEmpty()) {
+            val response = repository
+                .obterLista(
+                    ts,
+                    apikey,
+                    hash,
+                )
+//                    characters
+            _comics = response.data.results
+        }
 
         emit(_comics)
     }

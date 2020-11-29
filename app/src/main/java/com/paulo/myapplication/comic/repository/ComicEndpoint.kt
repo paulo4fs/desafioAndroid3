@@ -1,25 +1,25 @@
-package com.paulo.myapplication.comics.repository
+package com.paulo.myapplication.comic.repository
 
 import com.paulo.myapplication.comics.api.NetworkUtils
-import com.paulo.myapplication.comics.model.DataModel
 import com.paulo.myapplication.comics.model.ResponseModel
-import retrofit2.create
+import com.paulo.myapplication.comics.repository.ComicsEndpoint
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface ComicsEndpoint {
-    @GET("v1/public/comics")
-    suspend fun obterLista(
+interface ComicEndpoint {
+    @GET("v1/public/comics/{id}")
+    suspend fun obterItem(
+        @Path("id") id: Int,
         @Query("ts") ts: String,
         @Query("apikey") apikey: String,
         @Query("hash") hash: String,
     ): ResponseModel
-//        @Query("characters") characters: String
 
     companion object {
-        val endpoint: ComicsEndpoint by lazy {
+        val endpoint: ComicEndpoint by lazy {
             NetworkUtils.getRetrofitInstance().create(
-                ComicsEndpoint::class.java
+                ComicEndpoint::class.java
             )
         }
     }

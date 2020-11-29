@@ -8,7 +8,6 @@ class ComicsRepository {
     suspend fun obterLista(
         ts: String,
         apikey: String,
-        hash: String,
-        titleStarsWith: String
-    ) = client.obterLista(ts, apikey, hash, titleStarsWith)
+        hash: String
+    ) = client.obterLista(ts, apikey, hash)
 }
