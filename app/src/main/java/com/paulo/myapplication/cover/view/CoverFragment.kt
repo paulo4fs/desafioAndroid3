@@ -37,7 +37,11 @@ class CoverFragment : Fragment() {
         closeBtn(id, thumbnailPath!!, thumbnailExtension!!)
 
         val imageView = view.findViewById<ImageView>(R.id.ivImageCover)
-        Picasso.get().load(thumbnail).into(imageView)
+
+        Picasso.get()
+            .load(thumbnail)
+            .error(R.drawable.noimage)
+            .into(imageView)
     }
 
     private fun closeBtn(id: Int, thumbnailPath: String, thumbnailExtension: String) {
