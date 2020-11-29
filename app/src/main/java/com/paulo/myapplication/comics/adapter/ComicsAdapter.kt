@@ -24,16 +24,9 @@ class ComicsAdapter(
 
         val issue = item.issueNumber
 
-        if (item.images.isNotEmpty()) {
-            val imageJoin =
-                item.images[0].path + portraitMedium + item.images[0].extension
+        val thumbnailJoin = item.thumbnail.path + portraitMedium + item.thumbnail.extension
 
-
-            holder.bind(imageJoin, issue)
-        } else {
-            holder.bind("", issue)
-        }
-
+        holder.bind(thumbnailJoin.replace("http", "https"), issue)
 
         holder.itemView.setOnClickListener { listener(item) }
     }

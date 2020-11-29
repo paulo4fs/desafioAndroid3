@@ -48,15 +48,17 @@
             app:destination="@id/comicsFragment" />
         <action
             android:id="@+id/action_comicFragment_to_coverFragment"
-            app:destination="@id/coverFragment" />
+            app:destination="@id/coverFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
     </fragment>
-    <dialog
+    <fragment
         android:id="@+id/coverFragment"
-        android:name="com.paulo.myapplication.comic.view.CoverFragment"
+        android:name="com.paulo.myapplication.cover.view.CoverFragment"
         android:label="fragment_cover"
         tools:layout="@layout/fragment_cover">
         <action
             android:id="@+id/action_coverFragment_to_comicFragment"
-            app:destination="@id/comicFragment" />
-    </dialog>
+            app:destination="@id/comicFragment"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
 </navigation>

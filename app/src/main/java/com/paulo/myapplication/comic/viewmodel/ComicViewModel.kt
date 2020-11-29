@@ -9,15 +9,7 @@ import kotlinx.coroutines.Dispatchers
 class ComicViewModel(
     private val repository: ComicRepository
 ) : ViewModel() {
-    private lateinit var _comic: ComicModel
-
-    /*  private lateinit var _image: String
-      private lateinit var _thumbnail: String
-      private lateinit var _price: String
-      private lateinit var _description: String
-      private lateinit var _title: String
-      private lateinit var _date: String
-      private lateinit var _pagecount: String*/
+    lateinit var comic: ComicModel
 
     fun obterItem(
         id: Int,
@@ -29,8 +21,8 @@ class ComicViewModel(
             id, ts, apikey, hash
         )
 
-        _comic = response.data.results[0]
+        comic = response.data.results[0]
 
-        emit(_comic)
+        emit(comic)
     }
 }

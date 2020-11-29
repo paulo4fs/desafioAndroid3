@@ -11,7 +11,6 @@ class ComicsViewModel(
 ) : ViewModel() {
     private var _comics: List<ComicModel> = listOf()
 
-    //        characters: String
     fun obterLista(
         ts: String,
         apikey: String,
@@ -19,12 +18,8 @@ class ComicsViewModel(
     ) = liveData(Dispatchers.IO) {
         if (_comics.isEmpty()) {
             val response = repository
-                .obterLista(
-                    ts,
-                    apikey,
-                    hash,
-                )
-//                    characters
+                .obterLista(ts, apikey, hash)
+
             _comics = response.data.results
         }
 

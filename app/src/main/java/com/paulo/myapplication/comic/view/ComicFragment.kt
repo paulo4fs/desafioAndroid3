@@ -49,9 +49,18 @@ class ComicFragment : Fragment() {
         val apikey = "d5eb389c4ed264949086922b7b0c3545"
         val hash = "06a90a70b6362cdb5021e65d2b183dcc"
 
+
         _comicViewModel.obterItem(idArgument, ts, apikey, hash).observe(viewLifecycleOwner, {
             exibirItem(it)
         })
+
+/*        thumbnail =
+            (_comicViewModel.comic.thumbnail.extension +
+                    getString(R.string.portrait_incredible) +
+                    _comicViewModel.comic.thumbnail.path).replace(
+                "http",
+                "http"
+            )*/
 
         backBtn()
         thumbnailBtn(idArgument)
@@ -72,25 +81,30 @@ class ComicFragment : Fragment() {
         pageCountText.text = it.pageCount.toString()
         dateText.text = it.dates[0].date.split('T')[0]
 
-        var image = if (it.images.isNotEmpty()) {
-            it.images[0].path + getString(R.string.landscape_incredible) + it.images[0].extension
+        if (it.images.isNotEmpty()) {
+            val lastImage = it.images.size - 1
+            val imageUrl =
+                (it.images[lastImage].path + getString(R.string.landscape_incredible) + it.images[lastImage].extension)
+                    .replace("http", "https")
+            Picasso.get()
+                .load(imageUrl)
+                .error(R.drawable.noimage)
+                .into(coverImage)
         } else {
-            ""
+            Picasso.get()
+                .load(R.drawable.noimage)
+                .into(coverImage)
         }
 
-        val thumbnail =
-            it.thumbnail.path + getString(R.string.portrait_medium) + it.thumbnail.extension
+        var thumbnail =
+            it.thumbnail.path + getString(R.string.portrait_incredible) + it.thumbnail.extension
 
         Picasso.get()
-            .load(image)
-            .error(R.drawable.noimage)
-            .into(coverImage)
-//        http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_xlarge.jpg
-        Picasso.get()
-            .load(thumbnail)
+            .load(thumbnail.replace("http", "https"))
             .error(R.drawable.noimage)
             .into(thumbnailImage)
     }
+
     private fun backBtn() {
         val backBtn = _view.findViewById<ImageButton>(R.id.ibBackbuttonComic)
         backBtn.setOnClickListener {
@@ -102,7 +116,7 @@ class ComicFragment : Fragment() {
     private fun thumbnailBtn(id: Int) {
         val thumbnailBtn = _view.findViewById<ImageButton>(R.id.ibThumbnailComic)
 
-        val bundle = bundleOf("image" to R.drawable.portrait_incredible, "id" to id)
+        val bundle = bundleOf("id" to id)
 
         thumbnailBtn.setOnClickListener {
             val navController = findNavController()

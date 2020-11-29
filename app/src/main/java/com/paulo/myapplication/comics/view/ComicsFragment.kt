@@ -41,7 +41,6 @@ class ComicsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_comics, container, false)
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _view = view
@@ -51,27 +50,6 @@ class ComicsFragment : Fragment() {
 
         _listaDeComics = mutableListOf()
         _comicsAdapter = ComicsAdapter(_listaDeComics) {
-            Toast.makeText(view.context, "Issue: ${it.issueNumber}", Toast.LENGTH_SHORT).show()
-
-            val date = it.dates[0].date.split('t')[0]
-
-            var emptyImage = ImageModel("", "")
-
-            if (it.images.isNotEmpty()) {
-                emptyImage = it.images[0]
-            }
-
-/*            val bundle = bundleOf(
-                "imagePath" to emptyImage.path,
-                "imageExtension" to emptyImage.extension,
-                "thumbnailPath" to it.thumbnail.path,
-                "thumbnailExtension" to it.thumbnail.extension,
-                "price" to it.prices[0].price,
-                "description" to it.description,
-                "date" to date,
-                "title" to it.title,
-                "pageCount" to it.pageCount
-            )*/
             val bundle = bundleOf("id" to it.id)
 
             val navController = findNavController()
@@ -99,31 +77,10 @@ class ComicsFragment : Fragment() {
             })
     }
 
-
     private fun exibirLista(lista: List<ComicModel>) {
         lista.let {
             _listaDeComics.addAll(it)
             _comicsAdapter.notifyDataSetChanged()
         }
     }
-
-    //    @RequiresApi(Build.VERSION_CODES.N)
-//    private fun dateEditor(date: String): String {
-////2099-10-30
-//
-//        val pattern = "MMMM-dd-yyyy"
-//        val simpleDateFormat = SimpleDateFormat(pattern)
-//        var newDate = simpleDateFormat.format(convertedDate)
-//        val dateSplit = newDate.split('-')
-//        return "${dateSplit[0]} ${dateSplit[1]}, ${dateSplit[2]}"
-//    }
-//    @SuppressLint("SimpleDateFormat")
-//    @RequiresApi(Build.VERSION_CODES.N)
-//    private fun dateEditor(dates: Date): String {
-//        val pattern = "MMMM-dd-yyyy"
-//        val simpleDateFormat = SimpleDateFormat(pattern)
-//        var date = simpleDateFormat.format(dates)
-//        val dateSplit = date.split('-')
-//        return "${dateSplit[0]} ${dateSplit[1]}, ${dateSplit[2]}"
-//    }
 }

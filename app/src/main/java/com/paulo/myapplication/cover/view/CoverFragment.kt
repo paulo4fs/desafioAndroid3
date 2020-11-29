@@ -1,6 +1,5 @@
-package com.paulo.myapplication.comic.view
+package com.paulo.myapplication.cover.view
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,24 +7,14 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.core.os.bundleOf
-import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.paulo.myapplication.R
 import com.squareup.picasso.Picasso
 
-class CoverFragment : DialogFragment() {
+class CoverFragment : Fragment() {
     private lateinit var _view: View
 
-    override fun onStart() {
-        super.onStart()
-
-        val dialog: Dialog? = dialog
-        if (dialog != null) {
-            val width = ViewGroup.LayoutParams.MATCH_PARENT
-            val height = ViewGroup.LayoutParams.MATCH_PARENT
-            dialog.window?.setLayout(width, height)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,26 +28,23 @@ class CoverFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         _view = view
 
-
-        val image = arguments?.getInt("image")
+        val image = arguments?.getString("image")!!.replace("http", "https")
         val id = arguments?.getInt("id")!!
         val imageView = view.findViewById<ImageView>(R.id.ivImageCover)
 
         closeBtn(id)
 
-        if (image != null) {
-            Picasso.get().load(image).into(imageView)
-        }
+        Picasso.get().load(image).into(imageView)
     }
 
     private fun closeBtn(id: Int) {
         val close = _view.findViewById<ImageButton>(R.id.ibCloseCover)
 
-        var bundle = bundleOf("id" to id)
+        val bundle = bundleOf("id" to id)
 
         close.setOnClickListener {
-            var navcontroller = findNavController()
-            navcontroller.navigate(R.id.action_coverFragment_to_comicFragment, bundle)
+            val navController = findNavController()
+            navController.navigate(R.id.action_coverFragment_to_comicFragment, bundle)
         }
     }
 }

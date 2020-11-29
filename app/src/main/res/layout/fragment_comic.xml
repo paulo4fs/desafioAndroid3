@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dim20dp"
             android:layout_marginTop="80dp"
+            android:background="@color/colorWhite"
             android:padding="@dimen/dim5dp">
 
             <ImageButton
@@ -117,6 +118,7 @@
                 android:id="@+id/tvDateComic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dim5dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/colorWhite"
                 tools:text="April 30, 2014" />
@@ -140,6 +142,7 @@
                 android:id="@+id/tvPriceComic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dim5dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/colorWhite"
                 tools:text="$ 5,99" />
@@ -162,6 +165,7 @@
                 android:id="@+id/tvPagecountComic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dim5dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/colorWhite"
                 tools:text="38" />
