@@ -1,8 +1,7 @@
-package com.paulo.myapplication.comic.repository
+package com.paulo.myapplication.data.repository
 
-import com.paulo.myapplication.comics.api.NetworkUtils
-import com.paulo.myapplication.comics.model.ResponseModel
-import com.paulo.myapplication.comics.repository.ComicsEndpoint
+import com.paulo.myapplication.data.utils.NetworkUtils
+import com.paulo.myapplication.data.model.ResponseModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

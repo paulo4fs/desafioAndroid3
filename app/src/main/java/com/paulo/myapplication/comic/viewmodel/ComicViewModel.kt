@@ -2,8 +2,8 @@ package com.paulo.myapplication.comic.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.paulo.myapplication.comic.repository.ComicRepository
-import com.paulo.myapplication.comics.model.ComicModel
+import com.paulo.myapplication.data.repository.ComicRepository
+import com.paulo.myapplication.data.model.ComicModel
 import kotlinx.coroutines.Dispatchers
 
 class ComicViewModel(

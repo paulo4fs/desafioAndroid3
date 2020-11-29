@@ -1,6 +1,4 @@
-package com.paulo.myapplication.comic.repository
-
-import com.paulo.myapplication.comics.repository.ComicsEndpoint
+package com.paulo.myapplication.data.repository
 
 class ComicRepository {
     private val client = ComicEndpoint.endpoint

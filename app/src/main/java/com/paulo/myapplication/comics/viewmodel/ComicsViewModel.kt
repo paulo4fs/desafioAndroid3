@@ -1,10 +1,9 @@
 package com.paulo.myapplication.comics.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.paulo.myapplication.comics.model.ComicModel
-import com.paulo.myapplication.comics.repository.ComicsRepository
+import com.paulo.myapplication.data.model.ComicModel
+import com.paulo.myapplication.data.repository.ComicsRepository
 import kotlinx.coroutines.Dispatchers
 
 class ComicsViewModel(

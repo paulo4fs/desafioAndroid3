@@ -1,4 +1,4 @@
-package com.paulo.myapplication.comics.model
+package com.paulo.myapplication.data.model
 
 data class DataModel(
     val count: Int,

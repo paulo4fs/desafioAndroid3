@@ -1,4 +1,4 @@
-package com.paulo.myapplication.comics.api
+package com.paulo.myapplication.data.utils
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

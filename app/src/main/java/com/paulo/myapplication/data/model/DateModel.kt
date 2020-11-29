@@ -1,6 +1,4 @@
-package com.paulo.myapplication.comics.model
-
-import java.util.*
+package com.paulo.myapplication.data.model
 
 data class DateModel(
     val type: String,

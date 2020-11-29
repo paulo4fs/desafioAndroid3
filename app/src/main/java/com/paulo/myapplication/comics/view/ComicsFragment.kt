@@ -1,7 +1,5 @@
 package com.paulo.myapplication.comics.view
 
-import android.annotation.SuppressLint
-import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,13 +15,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.paulo.myapplication.R
 import com.paulo.myapplication.comics.adapter.ComicsAdapter
-import com.paulo.myapplication.comics.model.ComicModel
-import com.paulo.myapplication.comics.model.ImageModel
-import com.paulo.myapplication.comics.repository.ComicsRepository
+import com.paulo.myapplication.data.model.ComicModel
+import com.paulo.myapplication.data.model.ImageModel
+import com.paulo.myapplication.data.repository.ComicsRepository
 import com.paulo.myapplication.comics.viewmodel.ComicsViewModel
 import com.paulo.myapplication.comics.viewmodel.ComicsViewModelFactory
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 class ComicsFragment : Fragment() {
     private lateinit var _view: View

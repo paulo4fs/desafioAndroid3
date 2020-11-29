@@ -12,10 +12,10 @@
     <string name="save">Save</string>
     <string name="photo_area">photo area</string>
     <string name="register">Register</string>
-    <string name="landscape_incredible">/landscape_incredible.</string>
-    <string name="portrait_incredible">/portrait_incredible.</string>
     <string name="price_">Price: </string>
     <string name="published_">Published: </string>
     <string name="pages_">Pages: </string>
     <string name="portrait_medium">/portrait_medium.</string>
+    <string name="portrait_incredible">/portrait_incredible.</string>
+    <string name="landscape_incredible">/landscape_incredible.</string>
 </resources>

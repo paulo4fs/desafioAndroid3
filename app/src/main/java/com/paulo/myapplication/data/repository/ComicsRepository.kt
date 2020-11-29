@@ -1,6 +1,4 @@
-package com.paulo.myapplication.comics.repository
-
-import retrofit2.http.Query
+package com.paulo.myapplication.data.repository
 
 class ComicsRepository {
     private val client = ComicsEndpoint.endpoint

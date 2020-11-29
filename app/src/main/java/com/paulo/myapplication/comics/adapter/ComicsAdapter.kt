@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.paulo.myapplication.R
-import com.paulo.myapplication.comics.model.ComicModel
+import com.paulo.myapplication.data.model.ComicModel
 
 class ComicsAdapter(
     private val comics: List<ComicModel>,
