@@ -22,7 +22,24 @@ class ComicViewModel(
         )
 
         comic = response.data.results[0]
+        imageFix()
 
         emit(comic)
+    }
+
+    private fun imageFix() {
+        comic.thumbnail.path = comic.thumbnail.path.replace(
+            "http://",
+            "https://"
+        )
+
+        if (comic.images.isNotEmpty()) {
+            for (j in comic.images.indices) {
+                comic.images[j].path = comic.images[j].path.replace(
+                    "http://",
+                    "https://"
+                )
+            }
+        }
     }
 }

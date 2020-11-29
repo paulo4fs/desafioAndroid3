@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 class ComicsViewModel(
     private val repository: ComicsRepository
 ) : ViewModel() {
-    private var _comics: List<ComicModel> = listOf()
+    private var _comics = mutableListOf<ComicModel>()
 
     fun obterLista(
         ts: String,
@@ -19,10 +19,29 @@ class ComicsViewModel(
         if (_comics.isEmpty()) {
             val response = repository
                 .obterLista(ts, apikey, hash)
+            _comics = response.data.results.toMutableList()
 
-            _comics = response.data.results
+            imageFix()
         }
 
         emit(_comics)
+    }
+
+    private fun imageFix() {
+        for (i in _comics.indices) {
+            _comics[i].thumbnail.path = _comics[i].thumbnail.path.replace(
+                "http://",
+                "https://"
+            )
+
+            if (_comics[i].images.isNotEmpty()) {
+                for (j in _comics[i].images.indices) {
+                    _comics[i].images[j].path = _comics[i].images[j].path.replace(
+                        "http://",
+                        "https://"
+                    )
+                }
+            }
+        }
     }
 }

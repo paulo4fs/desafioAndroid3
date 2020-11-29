@@ -39,6 +39,8 @@ class ComicFragment : Fragment() {
         _view = view
 
         val idArgument = arguments?.getInt("id")!!
+        val thumbnailExtensionArgument = arguments?.getString("thumbnailExtension")
+        val thumbnailPathArgument = arguments?.getString("thumbnailPath")
 
         _comicViewModel = ViewModelProvider(
             this,
@@ -54,19 +56,17 @@ class ComicFragment : Fragment() {
             exibirItem(it)
         })
 
-/*        thumbnail =
-            (_comicViewModel.comic.thumbnail.extension +
-                    getString(R.string.portrait_incredible) +
-                    _comicViewModel.comic.thumbnail.path).replace(
-                "http",
-                "http"
-            )*/
+        val thumbnail = (
+                thumbnailPathArgument +
+                        getString(R.string.portrait_incredible) +
+                        thumbnailExtensionArgument
+                )
 
         backBtn()
-        thumbnailBtn(idArgument)
+        thumbnailBtn(idArgument, thumbnailPathArgument!!, thumbnailExtensionArgument!!)
     }
 
-    private fun exibirItem(it: ComicModel) {
+    private fun exibirItem(comic: ComicModel) {
         val thumbnailImage = _view.findViewById<ImageButton>(R.id.ibThumbnailComic)
         val coverImage = _view.findViewById<ImageView>(R.id.ivImageComic)
         val priceText = _view.findViewById<TextView>(R.id.tvPriceComic)
@@ -75,17 +75,17 @@ class ComicFragment : Fragment() {
         val pageCountText = _view.findViewById<TextView>(R.id.tvPagecountComic)
         val dateText = _view.findViewById<TextView>(R.id.tvDateComic)
 
-        priceText.text = "$ ${it.prices[0].price}"
-        descriptionText.text = it.description
-        titleText.text = it.title
-        pageCountText.text = it.pageCount.toString()
-        dateText.text = it.dates[0].date.split('T')[0]
+        priceText.text = "$ ${comic.prices[0].price}"
+        descriptionText.text = comic.description
+        titleText.text = comic.title
+        pageCountText.text = comic.pageCount.toString()
+        dateText.text = comic.dates[0].date.split('T')[0]
 
-        if (it.images.isNotEmpty()) {
-            val lastImage = it.images.size - 1
+        if (comic.images.isNotEmpty()) {
+            val lastImage = comic.images.size - 1
             val imageUrl =
-                (it.images[lastImage].path + getString(R.string.landscape_incredible) + it.images[lastImage].extension)
-                    .replace("http", "https")
+                (comic.images[lastImage].path + getString(R.string.landscape_incredible) + comic.images[lastImage].extension)
+
             Picasso.get()
                 .load(imageUrl)
                 .error(R.drawable.noimage)
@@ -96,11 +96,11 @@ class ComicFragment : Fragment() {
                 .into(coverImage)
         }
 
-        var thumbnail =
-            it.thumbnail.path + getString(R.string.portrait_incredible) + it.thumbnail.extension
+        val thumbnail =
+            comic.thumbnail.path + getString(R.string.portrait_incredible) + comic.thumbnail.extension
 
         Picasso.get()
-            .load(thumbnail.replace("http", "https"))
+            .load(thumbnail)
             .error(R.drawable.noimage)
             .into(thumbnailImage)
     }
@@ -113,10 +113,14 @@ class ComicFragment : Fragment() {
         }
     }
 
-    private fun thumbnailBtn(id: Int) {
+    private fun thumbnailBtn(id: Int, thumbnailPath: String, thumbnailExtension: String) {
         val thumbnailBtn = _view.findViewById<ImageButton>(R.id.ibThumbnailComic)
 
-        val bundle = bundleOf("id" to id)
+        val bundle = bundleOf(
+            "id" to id,
+            "thumbnailPath" to thumbnailPath,
+            "thumbnailExtension" to thumbnailExtension
+        )
 
         thumbnailBtn.setOnClickListener {
             val navController = findNavController()

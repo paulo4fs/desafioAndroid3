@@ -26,7 +26,7 @@ class ComicsAdapter(
 
         val thumbnailJoin = item.thumbnail.path + portraitMedium + item.thumbnail.extension
 
-        holder.bind(thumbnailJoin.replace("http", "https"), issue)
+        holder.bind(thumbnailJoin, issue)
 
         holder.itemView.setOnClickListener { listener(item) }
     }

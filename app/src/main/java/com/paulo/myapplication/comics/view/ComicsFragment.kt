@@ -50,7 +50,12 @@ class ComicsFragment : Fragment() {
 
         _listaDeComics = mutableListOf()
         _comicsAdapter = ComicsAdapter(_listaDeComics) {
-            val bundle = bundleOf("id" to it.id)
+
+            val bundle = bundleOf(
+                "id" to it.id,
+                "thumbnailExtension" to it.thumbnail.extension,
+                "thumbnailPath" to it.thumbnail.path
+            )
 
             val navController = findNavController()
             navController.navigate(R.id.action_comicsFragment_to_comicFragment, bundle)

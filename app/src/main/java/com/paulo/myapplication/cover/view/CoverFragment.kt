@@ -28,19 +28,26 @@ class CoverFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _view = view
 
-        val image = arguments?.getString("image")!!.replace("http", "https")
+        val thumbnailPath = arguments?.getString("thumbnailPath")
+        val thumbnailExtension = arguments?.getString("thumbnailExtension")
         val id = arguments?.getInt("id")!!
+
+        val thumbnail = "$thumbnailPath.$thumbnailExtension"
+
+        closeBtn(id, thumbnailPath!!, thumbnailExtension!!)
+
         val imageView = view.findViewById<ImageView>(R.id.ivImageCover)
-
-        closeBtn(id)
-
-        Picasso.get().load(image).into(imageView)
+        Picasso.get().load(thumbnail).into(imageView)
     }
 
-    private fun closeBtn(id: Int) {
+    private fun closeBtn(id: Int, thumbnailPath: String, thumbnailExtension: String) {
         val close = _view.findViewById<ImageButton>(R.id.ibCloseCover)
 
-        val bundle = bundleOf("id" to id)
+        val bundle = bundleOf(
+            "id" to id,
+            "thumbnailPath" to thumbnailPath,
+            "thumbnailExtension" to thumbnailExtension
+        )
 
         close.setOnClickListener {
             val navController = findNavController()
