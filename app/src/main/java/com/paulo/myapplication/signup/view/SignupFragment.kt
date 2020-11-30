@@ -20,7 +20,7 @@ import com.paulo.myapplication.R
 
 
 class SignupFragment : Fragment() {
-    lateinit var _view: View
+    private lateinit var _view: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

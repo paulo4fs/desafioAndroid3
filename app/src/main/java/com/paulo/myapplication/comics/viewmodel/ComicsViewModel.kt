@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.paulo.myapplication.data.model.ComicModel
 import com.paulo.myapplication.data.repository.ComicsRepository
+import com.paulo.myapplication.data.utils.DataUtils
 import kotlinx.coroutines.Dispatchers
 
 class ComicsViewModel(
@@ -25,18 +26,9 @@ class ComicsViewModel(
 
     private fun imageFix() {
         for (i in _comics.indices) {
-            _comics[i].thumbnail.path = _comics[i].thumbnail.path.replace(
-                "http://",
-                "https://"
-            )
-
+            DataUtils.thumbnailFix(_comics[i])
             if (_comics[i].images.isNotEmpty()) {
-                for (j in _comics[i].images.indices) {
-                    _comics[i].images[j].path = _comics[i].images[j].path.replace(
-                        "http://",
-                        "https://"
-                    )
-                }
+                DataUtils.imageFix(_comics[i])
             }
         }
     }

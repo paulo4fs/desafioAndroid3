@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.paulo.myapplication.R
 import com.paulo.myapplication.data.model.ComicModel
+import com.paulo.myapplication.data.utils.DataUtils
 
 class ComicsAdapter(
     private val comics: List<ComicModel>,
@@ -22,11 +23,16 @@ class ComicsAdapter(
 
         val portraitMedium = "/portrait_medium."
 
-        val issue = item.issueNumber
+        val issueNumber = item.issueNumber
 
-        val thumbnailJoin = item.thumbnail.path + portraitMedium + item.thumbnail.extension
+        val fullThumbnail =
+            DataUtils.imageJoin(
+                item.thumbnail.path,
+                portraitMedium,
+                item.thumbnail.extension
+            )
 
-        holder.bind(thumbnailJoin, issue)
+        holder.bind(fullThumbnail, issueNumber)
 
         holder.itemView.setOnClickListener { listener(item) }
     }

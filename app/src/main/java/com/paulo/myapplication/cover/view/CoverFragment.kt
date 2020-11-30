@@ -10,6 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.paulo.myapplication.R
+import com.paulo.myapplication.data.utils.DataUtils
 import com.squareup.picasso.Picasso
 
 class CoverFragment : Fragment() {
@@ -32,14 +33,15 @@ class CoverFragment : Fragment() {
         val thumbnailExtension = arguments?.getString("thumbnailExtension")
         val id = arguments?.getInt("id")!!
 
-        val thumbnail = "$thumbnailPath.$thumbnailExtension"
+        val fullThumbnailImage =
+            DataUtils.imageJoin(path = thumbnailPath!!, extension = thumbnailExtension!!)
 
-        closeBtn(id, thumbnailPath!!, thumbnailExtension!!)
+        closeBtn(id, thumbnailPath, thumbnailExtension)
 
         val imageView = view.findViewById<ImageView>(R.id.ivImageCover)
 
         Picasso.get()
-            .load(thumbnail)
+            .load(fullThumbnailImage)
             .fit()
             .centerCrop()
             .error(R.drawable.noimage)

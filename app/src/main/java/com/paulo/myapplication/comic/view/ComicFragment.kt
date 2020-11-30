@@ -16,6 +16,7 @@ import com.paulo.myapplication.data.repository.ComicRepository
 import com.paulo.myapplication.comic.viewmodel.ComicViewModel
 import com.paulo.myapplication.comic.viewmodel.ComicViewModelFactory
 import com.paulo.myapplication.data.model.ComicModel
+import com.paulo.myapplication.data.utils.DataUtils
 import com.squareup.picasso.Picasso
 
 class ComicFragment : Fragment() {
@@ -68,11 +69,15 @@ class ComicFragment : Fragment() {
 
         if (comic.images.isNotEmpty()) {
             val lastImage = comic.images.size - 1
-            val imageUrl =
-                (comic.images[lastImage].path + getString(R.string.landscape_incredible) + comic.images[lastImage].extension)
+            val fullLandscapeImage =
+                DataUtils.imageJoin(
+                    comic.images[lastImage].path,
+                    getString(R.string.landscape_incredible),
+                    comic.images[lastImage].extension
+                )
 
             Picasso.get()
-                .load(imageUrl)
+                .load(fullLandscapeImage)
                 .fit()
                 .centerCrop()
                 .error(R.drawable.noimage)
@@ -85,11 +90,14 @@ class ComicFragment : Fragment() {
                 .into(coverImage)
         }
 
-        val thumbnail =
-            comic.thumbnail.path + getString(R.string.portrait_incredible) + comic.thumbnail.extension
+        val fullThumbnail = DataUtils.imageJoin(
+            comic.thumbnail.path,
+            getString(R.string.portrait_incredible),
+            comic.thumbnail.extension
+        )
 
         Picasso.get()
-            .load(thumbnail)
+            .load(fullThumbnail)
             .fit()
             .centerCrop()
             .error(R.drawable.noimage)

@@ -90,7 +90,7 @@ class LoginFragment : Fragment() {
         if (email.text.toString().isEmpty() || password.text.toString().isEmpty()) {
             hideKeyboard()
             val toast =
-                Toast.makeText(_view.context, "Preemcha todos os campos", Toast.LENGTH_SHORT)
+                Toast.makeText(_view.context, getString(R.string.empty_fields), Toast.LENGTH_SHORT)
             toast.show()
         } else {
             hideKeyboard()

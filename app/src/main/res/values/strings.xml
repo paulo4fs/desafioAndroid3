@@ -20,4 +20,5 @@
     <string name="landscape_incredible">/landscape_incredible.</string>
     <string name="error_vazio">Campo vazio</string>
     <string name="conta_criada">Conta criada com sucesso</string>
+    <string name="empty_fields">There are empty fields</string>
 </resources>

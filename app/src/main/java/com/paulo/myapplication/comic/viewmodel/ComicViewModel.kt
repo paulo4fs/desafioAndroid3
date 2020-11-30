@@ -2,12 +2,10 @@ package com.paulo.myapplication.comic.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import com.paulo.myapplication.data.utils.DataUtils
 import com.paulo.myapplication.data.repository.ComicRepository
 import com.paulo.myapplication.data.model.ComicModel
 import kotlinx.coroutines.Dispatchers
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 class ComicViewModel(
     private val repository: ComicRepository
@@ -28,39 +26,15 @@ class ComicViewModel(
 
 
     private fun imageFix() {
-        comic.thumbnail.path = comic.thumbnail.path.replace(
-            "http://",
-            "https://"
-        )
-
-        if (comic.images.isNotEmpty()) {
-            for (j in comic.images.indices) {
-                comic.images[j].path = comic.images[j].path.replace(
-                    "http://",
-                    "https://"
-                )
-            }
-        }
+        DataUtils.thumbnailFix(comic)
+        DataUtils.imageFix(comic)
     }
 
     private fun dateFix() {
-        if (comic.dates[1].date.startsWith('-')) {
-            comic.dates[1].date = "date undefined"
-        } else {
-            val dateString = comic.dates[1].date.split('T')[0]
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                val parsedDate =
-                    LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                val formattedDate =
-                    parsedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
-                comic.dates[1].date = formattedDate
-            }
-        }
+        DataUtils.dateFix(comic)
     }
 
     private fun descriptionFix() {
-        if (comic.description.isNullOrEmpty()) {
-            comic.description = "No description."
-        }
+        DataUtils.descriptionFix(comic)
     }
 }
