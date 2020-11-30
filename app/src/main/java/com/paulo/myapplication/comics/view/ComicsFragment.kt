@@ -26,11 +26,7 @@ class ComicsFragment : Fragment() {
 
     private var _listaDeComics = mutableListOf<ComicModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(
+        override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -69,11 +65,11 @@ class ComicsFragment : Fragment() {
 
         _comicsViewModel.obterComics()
             .observe(viewLifecycleOwner, {
-                exibirLista(it)
+                showList(it)
             })
     }
 
-    private fun exibirLista(lista: List<ComicModel>) {
+    private fun showList(lista: List<ComicModel>) {
         lista.let {
             _listaDeComics.addAll(it)
             _comicsAdapter.notifyDataSetChanged()

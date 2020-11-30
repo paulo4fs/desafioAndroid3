@@ -64,7 +64,7 @@ class LoginFragment : Fragment() {
     private fun putError(text: TextInputEditText, layout: TextInputLayout) {
         if (text.text.toString().isEmpty()) {
             layout.isErrorEnabled = true
-            layout.error = getString(R.string.error_vazio)
+            layout.error = getString(R.string.error_empty)
         }
     }
 

@@ -65,7 +65,7 @@ class SignupFragment : Fragment() {
     private fun putError(text: TextInputEditText?, layout: TextInputLayout?) {
         if (text?.text.toString().isEmpty()) {
             layout?.isErrorEnabled = true
-            layout?.error = getString(R.string.error_vazio)
+            layout?.error = getString(R.string.error_empty)
         }
     }
 
@@ -109,7 +109,7 @@ class SignupFragment : Fragment() {
             password.text.toString().isEmpty()
         ) {
             val toast =
-                Toast.makeText(context, getString(R.string.error_vazio), Toast.LENGTH_SHORT)
+                Toast.makeText(context, getString(R.string.error_empty), Toast.LENGTH_SHORT)
             toast.show()
         } else {
             val bundle = bundleOf("email" to email.text.toString())
@@ -118,7 +118,7 @@ class SignupFragment : Fragment() {
             navController.navigate(R.id.action_signupFragment_to_loginFragment, bundle)
 
             val toast =
-                Toast.makeText(context, getString(R.string.conta_criada), Toast.LENGTH_SHORT)
+                Toast.makeText(context, getString(R.string.account_created), Toast.LENGTH_SHORT)
             toast.show()
 
             hideKeyboard()
