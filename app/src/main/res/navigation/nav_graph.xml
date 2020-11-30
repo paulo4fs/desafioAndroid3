@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/comicsFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -37,7 +37,7 @@
         <action
             android:id="@+id/action_comicsFragment_to_comicFragment"
             app:destination="@id/comicFragment"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/comicFragment"
@@ -46,7 +46,8 @@
         tools:layout="@layout/fragment_comic">
         <action
             android:id="@+id/action_comicFragment_to_comicsFragment"
-            app:destination="@id/comicsFragment" />
+            app:destination="@id/comicsFragment"
+            app:exitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_comicFragment_to_coverFragment"
             app:destination="@id/coverFragment"

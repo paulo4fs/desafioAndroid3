@@ -14,20 +14,14 @@ class ComicViewModel(
 ) : ViewModel() {
     lateinit var comic: ComicModel
 
-    fun obterItem(
-        id: Int,
-        ts: String,
-        apikey: String,
-        hash: String
-    ) = liveData(Dispatchers.IO) {
-        val response = repository.obterItem(
-            id, ts, apikey, hash
-        )
+    fun obterItem(id: Int) = liveData(Dispatchers.IO) {
+        val response = repository.obterItem(id)
 
         comic = response.data.results[0]
 
         imageFix()
         dateFix()
+        descriptionFix()
 
         emit(comic)
     }
@@ -61,6 +55,12 @@ class ComicViewModel(
                     parsedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))
                 comic.dates[1].date = formattedDate
             }
+        }
+    }
+
+    private fun descriptionFix() {
+        if (comic.description.isNullOrEmpty()) {
+            comic.description = "No description."
         }
     }
 }

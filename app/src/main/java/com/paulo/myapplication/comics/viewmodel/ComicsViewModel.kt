@@ -11,14 +11,10 @@ class ComicsViewModel(
 ) : ViewModel() {
     private var _comics = listOf<ComicModel>()
 
-    fun obterLista(
-        ts: String,
-        apikey: String,
-        hash: String
-    ) = liveData(Dispatchers.IO) {
+    fun obterLista() = liveData(Dispatchers.IO) {
         if (_comics.isEmpty()) {
             val response = repository
-                .obterLista(ts, apikey, hash)
+                .obterLista()
             _comics = response.data.results.toMutableList()
 
             imageFix()

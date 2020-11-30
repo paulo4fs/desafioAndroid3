@@ -47,12 +47,7 @@ class ComicFragment : Fragment() {
             ComicViewModelFactory(ComicRepository())
         ).get(ComicViewModel::class.java)
 
-        val ts = "1606439381833"
-        val apikey = "d5eb389c4ed264949086922b7b0c3545"
-        val hash = "06a90a70b6362cdb5021e65d2b183dcc"
-
-
-        _comicViewModel.obterItem(idArgument, ts, apikey, hash).observe(viewLifecycleOwner, {
+        _comicViewModel.obterItem(idArgument).observe(viewLifecycleOwner, {
             exibirItem(it)
         })
 

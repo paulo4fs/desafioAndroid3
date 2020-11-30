@@ -4,7 +4,7 @@ data class ComicModel(
     val id: Int,
     val title: String,
     val issueNumber: Double,
-    val description: String?,
+    var description: String?,
     val pageCount: Int,
     val dates: List<DateModel>,
     val prices: List<PriceModel>,
