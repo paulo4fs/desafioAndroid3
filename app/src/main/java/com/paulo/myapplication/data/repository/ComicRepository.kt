@@ -8,10 +8,10 @@ class ComicRepository {
 
     private val publickey = "6eb7e8896ec5850c52515a8a23ee97f0"
 
-    suspend fun obterItem(
+    suspend fun getComic(
         id: Int,
         ts: String = getTimeStamp(),
         apikey: String = publickey,
         hash: String = ServiceRetrofit.getHash()
-    ) = client.obterItem(id, ts, apikey, hash)
+    ) = client.getComic(id, ts, apikey, hash)
 }

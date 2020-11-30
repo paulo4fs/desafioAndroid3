@@ -1,15 +1,15 @@
-# MARVEL APP 🐱‍🚀
+# 🐱‍🚀 MARVEL APP
 
 > Aplicativo Android que utiliza a api da MARVEL para consumir imagens, textos e datas. Feito durante terceiro desafio do curso Santander Coders Mobile Android by Digital House. 📚
 
-<div>
-<img width="250" src="https://i.ibb.co/GCLJZy4/Screenshot-1605798951.png" alt="Exploracao_Espacial" border="0"> <img width="250" src="https://i.ibb.co/HHqJgth/Screenshot-1605798976.png" alt="Web-Signin" border="0"> <img width="250" src="https://i.ibb.co/vCWvxQn/Screenshot-1605798987.png" alt="Sistema_Solar" border="0">
+<div align="center">
+<img width="250" src="https://i.ibb.co/SB5gHgP/Screenshot-1606757452.png" alt="Exploracao_Espacial" border="0"> <img width="250" src="https://i.ibb.co/VSDFJwj/Screenshot-1606757433.png" alt="Web-Signin" border="0"> <img width="250" src="https://i.ibb.co/G0c0WL2/Screenshot-1606757438.png" alt="Sistema_Solar" border="0">
 </div>
 
 # 🔨 Tecnologias 
 
-* RecyclerView 
 * Navigation
+* RecyclerView 
 * Retrofit
 * Coroutines
 * Material

@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface ComicEndpoint {
     @GET("v1/public/comics/{id}")
-    suspend fun obterItem(
+    suspend fun getComic(
         @Path("id") id: Int,
         @Query("ts") ts: String,
         @Query("apikey") apikey: String,

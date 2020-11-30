@@ -15,7 +15,7 @@ class ComicsViewModel(
     fun obterComics() = liveData(Dispatchers.IO) {
         if (_comics.isEmpty()) {
             val response = repository
-                .obterComics()
+                .getAllComics()
             _comics = response.data.results.toMutableList()
 
             imageFix()

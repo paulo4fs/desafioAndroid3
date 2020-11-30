@@ -13,7 +13,7 @@ class ComicViewModel(
     lateinit var comic: ComicModel
 
     fun obterItem(id: Int) = liveData(Dispatchers.IO) {
-        val response = repository.obterItem(id)
+        val response = repository.getComic(id)
 
         comic = response.data.results[0]
 

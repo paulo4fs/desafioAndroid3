@@ -7,7 +7,7 @@ import com.paulo.myapplication.data.api.getTimeStamp
 class ComicsRepository {
     private val client = ComicsEndpoint.endpoint
 
-    suspend fun obterComics(
+    suspend fun getAllComics(
         format: String? = "comic",
         formatType: String? = "comic",
         noVariants: Boolean? = true,
@@ -15,7 +15,7 @@ class ComicsRepository {
         ts: String = getTimeStamp(),
         apikey: String = getPublicKey(),
         hash: String = ServiceRetrofit.getHash()
-    ) = client.obterComics(
+    ) = client.getAllComics(
         format,
         formatType,
         noVariants,
