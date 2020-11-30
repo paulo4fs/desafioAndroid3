@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface ComicsEndpoint {
     @GET("v1/public/comics")
-    suspend fun obterLista(
+    suspend fun obterComics(
         @Query("format") format: String?,
         @Query("formatType") formatType: String?,
         @Query("noVariants") noVariants: Boolean?,

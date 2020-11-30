@@ -22,10 +22,6 @@ class ComicFragment : Fragment() {
     private lateinit var _view: View
     private lateinit var _comicViewModel: ComicViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

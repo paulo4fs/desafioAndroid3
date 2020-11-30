@@ -72,7 +72,7 @@ class ComicsFragment : Fragment() {
 //        val apikey = "d5eb389c4ed264949086922b7b0c3545"
 //        val hash = "06a90a70b6362cdb5021e65d2b183dcc"
 
-        _comicsViewModel.obterLista()
+        _comicsViewModel.obterComics()
             .observe(viewLifecycleOwner, {
                 exibirLista(it)
             })

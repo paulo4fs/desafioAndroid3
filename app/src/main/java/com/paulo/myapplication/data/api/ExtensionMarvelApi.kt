@@ -38,7 +38,6 @@ class ExtensionMarvelApi() {
     }
 }
 
-fun getTimeStamp(): String {
-    val ts = Calendar.getInstance().timeInMillis / 1000
-    return ts.toString()
-}
+fun getPublicKey() = "6eb7e8896ec5850c52515a8a23ee97f0"
+fun getPrivateKey() = "0dd0c16fedb8a02985977eafca66b49f5e6a526f"
+fun getTimeStamp() = (Calendar.getInstance().timeInMillis / 1000).toString()
