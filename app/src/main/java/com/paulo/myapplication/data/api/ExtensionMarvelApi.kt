@@ -38,6 +38,6 @@ class ExtensionMarvelApi() {
     }
 }
 
-fun getPublicKey() = "6eb7e8896ec5850c52515a8a23ee97f0"
-fun getPrivateKey() = "0dd0c16fedb8a02985977eafca66b49f5e6a526f"
+fun getPublicKey() = "d5eb389c4ed264949086922b7b0c3545"
+fun getPrivateKey() = "a8950be35e2b57fa68cc4b12ba1434c2e2a9e060"
 fun getTimeStamp() = (Calendar.getInstance().timeInMillis / 1000).toString()
