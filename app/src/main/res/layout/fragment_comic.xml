@@ -9,7 +9,7 @@
     tools:context=".comic.view.ComicFragment">
 
     <FrameLayout
-        android:id="@+id/flTopimage"
+        android:id="@+id/flTopImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,32 +19,35 @@
         <ImageView
             android:id="@+id/ivImageComic"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="@dimen/dim220dp"
+            android:contentDescription="@string/landscape_image"
             tools:src="@tools:sample/backgrounds/scenic" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dim20dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="@dimen/dim80dp"
             android:background="@color/colorWhite"
             android:padding="@dimen/dim5dp">
 
             <ImageButton
                 android:id="@+id/ibThumbnailComic"
-                android:layout_width="140dp"
-                android:layout_height="180dp"
-                android:padding="0dp"
+                android:layout_width="@dimen/dim140dp"
+                android:layout_height="@dimen/dim180dp"
+                android:contentDescription="@string/thumbnail_image"
+                android:padding="@dimen/dim0dp"
                 tools:src="@tools:sample/avatars" />
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/ibBackbuttonComic"
+            android:id="@+id/ibBackButtonComic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dim10dp"
             android:layout_marginTop="@dimen/dim10dp"
             android:background="@color/colorTransparent"
+            android:contentDescription="@string/back_button"
             android:padding="@dimen/dim10dp"
             android:src="@drawable/ic_baseline_arrow_back_24"
             android:tint="@color/colorWhite" />
@@ -52,14 +55,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/dim0dp"
         android:layout_weight="1"
         android:orientation="vertical"
         android:paddingHorizontal="@dimen/dim20dp"
-        app:layout_constraintBottom_toTopOf="@id/lnBottomtext"
+        app:layout_constraintBottom_toTopOf="@id/lnBottomText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/flTopimage">
+        app:layout_constraintTop_toBottomOf="@id/flTopImage">
 
         <TextView
             android:id="@+id/tvTitleComic"
@@ -72,7 +75,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/dim24sp"
             android:textStyle="bold"
-            tools:text="AMAZING SPIDER-MAN (2014) #1 (mhan variant)" />
+            tools:text="@string/place_holder_title" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -90,7 +93,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/lnBottomtext"
+        android:id="@+id/lnBottomText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -119,7 +122,7 @@
                 android:layout_marginStart="@dimen/dim5dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/colorWhite"
-                tools:text="April 30, 2014" />
+                tools:text="@string/placeholder_date" />
         </LinearLayout>
 
         <LinearLayout
@@ -143,7 +146,7 @@
                 android:layout_marginStart="@dimen/dim5dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/colorWhite"
-                tools:text="$ 5,99" />
+                tools:text="@string/placeholder_money" />
         </LinearLayout>
 
         <LinearLayout
@@ -160,13 +163,13 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvPagecountComic"
+                android:id="@+id/tvPageCountComic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dim5dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/colorWhite"
-                tools:text="38" />
+                tools:text="@string/placeholder_page" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,11 +9,14 @@ import com.squareup.picasso.Picasso
 
 class ComicsViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     private val _imageView = view.findViewById<ImageView>(R.id.ivImageItem)
-    private val _issueView = view.findViewById<TextView>(R.id.tvIssuenumberItem)
+    private val _issueView = view.findViewById<TextView>(R.id.tvIssueNumberItem)
 
     fun bind(thumbnail: String, issue: Double) {
-        if (issue.rem(1) == 0.0) _issueView.text =
-            "#${issue.toString().split('.')[0]}" else _issueView.text = "#${issue}"
+        _issueView.text = if (issue.rem(1) == 0.0) {
+            "#${issue.toString().split('.')[0]}"
+        } else {
+            "#${issue}"
+        }
 
         Picasso.get()
             .load(thumbnail)

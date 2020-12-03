@@ -4,9 +4,9 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*
 
-class ExtensionMarvelApi() {
+class ExtensionMarvelApi {
     companion object {
-        private val HEXCHARS = charArrayOf(
+        private val hexChars = charArrayOf(
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
             'a', 'b', 'c', 'd', 'e', 'f'
         )
@@ -18,8 +18,8 @@ class ExtensionMarvelApi() {
             var j = 0
             while (i < bytes.size) {
                 b = bytes[i].toInt() and 0xff
-                result[j++] = HEXCHARS[b shr 4]
-                result[j++] = HEXCHARS[b and 0xf]
+                result[j++] = hexChars[b shr 4]
+                result[j++] = hexChars[b and 0xf]
                 i++
             }
             return String(result)

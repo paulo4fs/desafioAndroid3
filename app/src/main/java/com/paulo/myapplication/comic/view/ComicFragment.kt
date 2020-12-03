@@ -44,24 +44,24 @@ class ComicFragment : Fragment() {
             ComicViewModelFactory(ComicRepository())
         ).get(ComicViewModel::class.java)
 
-        _comicViewModel.obterItem(idArgument).observe(viewLifecycleOwner, {
-            exibirItem(it)
+        _comicViewModel.getItem(idArgument).observe(viewLifecycleOwner, {
+            showItem(it)
         })
 
         backBtn()
         thumbnailBtn(idArgument, thumbnailPathArgument!!, thumbnailExtensionArgument!!)
     }
 
-    private fun exibirItem(comic: ComicModel) {
+    private fun showItem(comic: ComicModel) {
         val thumbnailImage = _view.findViewById<ImageButton>(R.id.ibThumbnailComic)
         val coverImage = _view.findViewById<ImageView>(R.id.ivImageComic)
         val priceText = _view.findViewById<TextView>(R.id.tvPriceComic)
         val descriptionText = _view.findViewById<TextView>(R.id.tvDescriptionComic)
         val titleText = _view.findViewById<TextView>(R.id.tvTitleComic)
-        val pageCountText = _view.findViewById<TextView>(R.id.tvPagecountComic)
+        val pageCountText = _view.findViewById<TextView>(R.id.tvPageCountComic)
         val dateText = _view.findViewById<TextView>(R.id.tvDateComic)
 
-        priceText.text = "$ ${comic.prices[0].price}"
+        ("$ " + comic.prices[0].price).also { priceText.text = it }
         descriptionText.text = comic.description
         titleText.text = comic.title
         pageCountText.text = comic.pageCount.toString()
@@ -105,7 +105,7 @@ class ComicFragment : Fragment() {
     }
 
     private fun backBtn() {
-        val backBtn = _view.findViewById<ImageButton>(R.id.ibBackbuttonComic)
+        val backBtn = _view.findViewById<ImageButton>(R.id.ibBackButtonComic)
         backBtn.setOnClickListener {
             val navController = findNavController()
             navController.navigate(R.id.action_comicFragment_to_comicsFragment)

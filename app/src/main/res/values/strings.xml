@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">MarvelApp</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="welcome_marvel">Welcome to the Marvel HQ\'s</string>
@@ -15,10 +14,21 @@
     <string name="price_">Price:</string>
     <string name="published_">Published:</string>
     <string name="pages_">Pages:</string>
-    <string name="portrait_medium">/portrait_medium.</string>
     <string name="portrait_incredible">/portrait_incredible.</string>
     <string name="landscape_incredible">/landscape_incredible.</string>
     <string name="error_empty">Field is empty</string>
     <string name="account_created">Account successfully created</string>
     <string name="empty_fields">There are empty fields</string>
+    <string name="placeholder_date">April 30, 2014</string>
+    <string name="placeholder_money">$ 5,99</string>
+    <string name="placeholder_page">38</string>
+    <string name="back_button">back button</string>
+    <string name="place_holder_title">AMAZING SPIDER-MAN (2014) #1 (mhan variant)</string>
+    <string name="spider_man_background_image">Spider-Man background image</string>
+    <string name="marvel_logo">Marvel Logo</string>
+    <string name="comic_thumbnail">comic thumbnail</string>
+    <string name="landscape_image">Landscape image</string>
+    <string name="thumbnail_image">Thumbnail image</string>
+    <string name="image">Image</string>
+    <string name="close_button">Close button</string>
 </resources>

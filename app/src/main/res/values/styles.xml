@@ -1,31 +1,18 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme.Signup" parent="Theme.MaterialComponents">
+
+    <style name="AppTheme.NoActionbar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorRed</item>
         <item name="colorPrimaryDark">@color/colorRedDark</item>
         <item name="colorAccent">@color/colorWhite</item>
     </style>
 
-    <style name="AppTheme.Noactionbar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorRed</item>
-        <item name="colorPrimaryDark">@color/colorRedDark</item>
-        <item name="colorAccent">@color/colorWhite</item>
-    </style>
-
-    <style name="AppTheme.Splashcreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="AppTheme.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorRed</item>
         <item name="colorPrimaryDark">@color/colorRed</item>
         <item name="colorAccent">@color/colorRed</item>
-    </style>
-
-    <style name="AppTheme.Comics" parent="Theme.MaterialComponents.DayNight">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorRed</item>
-        <item name="colorPrimaryDark">@color/colorRedDark</item>
-        <item name="colorAccent">@color/colorWhite</item>
     </style>
 
 </resources>

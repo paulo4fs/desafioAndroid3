@@ -20,11 +20,11 @@ import com.paulo.myapplication.data.repository.ComicsRepository
 class ComicsFragment : Fragment() {
     private lateinit var _view: View
     private lateinit var _comicsViewModel: ComicsViewModel
-    private lateinit var _lista: RecyclerView
+    private lateinit var _list: RecyclerView
 
     private lateinit var _comicsAdapter: ComicsAdapter
 
-    private var _listaDeComics = mutableListOf<ComicModel>()
+    private var _comicsList = mutableListOf<ComicModel>()
 
         override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,12 +36,12 @@ class ComicsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _view = view
-        _lista = view.findViewById(R.id.recyclerview)
+        _list = view.findViewById(R.id.recyclerview)
 
         val manager = GridLayoutManager(view.context, 3)
 
-        _listaDeComics = mutableListOf()
-        _comicsAdapter = ComicsAdapter(_listaDeComics) {
+        _comicsList = mutableListOf()
+        _comicsAdapter = ComicsAdapter(_comicsList) {
             val bundle = bundleOf(
                 "id" to it.id,
                 "thumbnailExtension" to it.thumbnail.extension,
@@ -52,7 +52,7 @@ class ComicsFragment : Fragment() {
             navController.navigate(R.id.action_comicsFragment_to_comicFragment, bundle)
         }
 
-        _lista.apply {
+        _list.apply {
             setHasFixedSize(true)
             layoutManager = manager
             adapter = _comicsAdapter
@@ -63,7 +63,7 @@ class ComicsFragment : Fragment() {
             ComicsViewModelFactory(ComicsRepository())
         ).get(ComicsViewModel::class.java)
 
-        _comicsViewModel.obterComics()
+        _comicsViewModel.getComics()
             .observe(viewLifecycleOwner, {
                 showList(it)
             })
@@ -71,7 +71,7 @@ class ComicsFragment : Fragment() {
 
     private fun showList(lista: List<ComicModel>) {
         lista.let {
-            _listaDeComics.addAll(it)
+            _comicsList.addAll(it)
             _comicsAdapter.notifyDataSetChanged()
         }
     }

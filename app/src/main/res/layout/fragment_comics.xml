@@ -17,6 +17,7 @@
         <ImageView
             android:layout_width="@dimen/dim85dp"
             android:layout_height="@dimen/dim40dp"
+            android:contentDescription="@string/marvel_logo"
             android:scaleType="fitXY"
             android:src="@drawable/marvel_logo" />
     </androidx.appcompat.widget.Toolbar>

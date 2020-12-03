@@ -12,7 +12,7 @@ class ComicsViewModel(
 ) : ViewModel() {
     private var _comics = listOf<ComicModel>()
 
-    fun obterComics() = liveData(Dispatchers.IO) {
+    fun getComics() = liveData(Dispatchers.IO) {
         if (_comics.isEmpty()) {
             val response = repository
                 .getAllComics()

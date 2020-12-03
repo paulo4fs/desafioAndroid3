@@ -1,7 +1,5 @@
 package com.paulo.myapplication.data.api
 
-import javax.crypto.Cipher.PRIVATE_KEY
-
 class ServiceRetrofit {
 
     companion object {

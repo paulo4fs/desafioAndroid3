@@ -2,10 +2,10 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardComic"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dim5dp"
+    android:background="@color/colorBlack"
     app:cardCornerRadius="@dimen/dim0dp"
     tools:showIn="@layout/fragment_comics">
 
@@ -25,12 +25,13 @@
             <ImageView
                 android:id="@+id/ivImageItem"
                 android:layout_width="match_parent"
+                android:contentDescription="@string/comic_thumbnail"
                 android:layout_height="@dimen/dim160dp"
                 tools:src="@tools:sample/avatars" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvIssuenumberItem"
+            android:id="@+id/tvIssueNumberItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"

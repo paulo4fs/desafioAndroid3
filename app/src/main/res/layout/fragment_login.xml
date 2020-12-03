@@ -13,12 +13,13 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorRed"
+        app:cardBackgroundColor="@color/colorRed"
         app:cardCornerRadius="@dimen/dim10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorTransparent"
             android:orientation="vertical">
 
             <TextView
@@ -35,10 +36,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/loginshape"
-                android:backgroundTint="@color/colorWhite"
+                android:background="@drawable/login_shape"
                 android:orientation="vertical"
-                android:padding="@dimen/dim10dp">
+                android:padding="@dimen/dim10dp"
+                app:backgroundTint="@color/colorWhite">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilEmailLogin"
@@ -64,24 +65,23 @@
                     android:layout_marginTop="@dimen/dim10dp"
                     android:fontFamily="@font/roboto"
                     android:hint="@string/password"
-                    app:boxBackgroundColor="@color/colorWhite"
+                    app:boxBackgroundColor="@color/colorTransparent"
                     app:endIconMode="password_toggle">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tietPasswordLogin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
                         android:fontFamily="@font/roboto"
                         android:inputType="textPassword" />
-
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/checkboxLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:buttonTint="@color/colorRed"
                     android:checked="true"
-                    android:buttonTint="@color/colorRed"
                     android:fontFamily="@font/roboto"
                     android:text="@string/remember" />
 
@@ -107,7 +107,6 @@
                     android:textSize="@dimen/dim16sp" />
             </LinearLayout>
         </LinearLayout>
-
     </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

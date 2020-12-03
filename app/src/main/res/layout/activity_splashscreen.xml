@@ -9,8 +9,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:src="@drawable/bgsplash"
+        android:src="@drawable/bg_splash"
         android:scaleType="fitXY"
+        android:contentDescription="@string/spider_man_background_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +21,7 @@
         android:layout_width="251dp"
         android:layout_height="100dp"
         android:src="@drawable/marvel_logo"
+        android:contentDescription="@string/marvel_logo"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
