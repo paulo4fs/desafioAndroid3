@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -26,7 +27,7 @@ class ComicsFragment : Fragment() {
 
     private var _comicsList = mutableListOf<ComicModel>()
 
-        override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -63,16 +64,29 @@ class ComicsFragment : Fragment() {
             ComicsViewModelFactory(ComicsRepository())
         ).get(ComicsViewModel::class.java)
 
-        _comicsViewModel.getComics()
-            .observe(viewLifecycleOwner, {
-                showList(it)
-            })
+        _comicsViewModel.getComics().observe(viewLifecycleOwner, {
+            showList(it)
+        })
+
+        showLoading(true)
     }
 
     private fun showList(lista: List<ComicModel>) {
+        showLoading(false)
+
         lista.let {
             _comicsList.addAll(it)
-            _comicsAdapter.notifyDataSetChanged()
+        }
+        _comicsAdapter.notifyDataSetChanged()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        val progressBar = _view.findViewById<ProgressBar>(R.id.pbLoading)
+
+        if (isLoading) {
+            progressBar.visibility = View.VISIBLE
+        } else {
+            progressBar.visibility = View.GONE
         }
     }
 }
