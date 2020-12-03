@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MarvelApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="welcome_marvel">Welcome to the Marvel HQ\'s</string>
@@ -18,7 +17,7 @@
     <string name="landscape_incredible">/landscape_incredible.</string>
     <string name="error_empty">Field is empty</string>
     <string name="account_created">Account successfully created</string>
-    <string name="empty_fields">There are empty fields</string>
+    <string name="empty_fields">Type anything in the fields to access</string>
     <string name="placeholder_date">April 30, 2014</string>
     <string name="placeholder_money">$ 5,99</string>
     <string name="placeholder_page">38</string>
