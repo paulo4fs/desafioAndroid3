@@ -18,7 +18,8 @@ import com.paulo.myapplication.comics.viewmodel.ComicsViewModelFactory
 import com.paulo.myapplication.data.model.ComicModel
 import com.paulo.myapplication.data.repository.ComicsRepository
 
-class ComicsFragment : Fragment() {
+class
+ComicsFragment : Fragment() {
     private lateinit var _view: View
     private lateinit var _comicsViewModel: ComicsViewModel
     private lateinit var _list: RecyclerView
@@ -48,7 +49,6 @@ class ComicsFragment : Fragment() {
                 "thumbnailExtension" to it.thumbnail.extension,
                 "thumbnailPath" to it.thumbnail.path
             )
-
             val navController = findNavController()
             navController.navigate(R.id.action_comicsFragment_to_comicFragment, bundle)
         }

@@ -39,6 +39,7 @@ class ComicFragment : Fragment() {
         val thumbnailExtensionArgument = arguments?.getString("thumbnailExtension")
         val thumbnailPathArgument = arguments?.getString("thumbnailPath")
 
+
         _comicViewModel = ViewModelProvider(
             this,
             ComicViewModelFactory(ComicRepository())
@@ -82,6 +83,10 @@ class ComicFragment : Fragment() {
                 .centerCrop()
                 .error(R.drawable.noimage)
                 .into(coverImage)
+
+            coverImage.setOnClickListener {
+                imageLauncher(id, comic.images[lastImage].path, comic.images[lastImage].extension)
+            }
         } else {
             Picasso.get()
                 .load(R.drawable.noimage)
@@ -107,23 +112,26 @@ class ComicFragment : Fragment() {
     private fun backBtn() {
         val backBtn = _view.findViewById<ImageButton>(R.id.ibBackButtonComic)
         backBtn.setOnClickListener {
-            val navController = findNavController()
-            navController.navigate(R.id.action_comicFragment_to_comicsFragment)
+            requireActivity().onBackPressed()
         }
     }
 
     private fun thumbnailBtn(id: Int, thumbnailPath: String, thumbnailExtension: String) {
         val thumbnailBtn = _view.findViewById<ImageButton>(R.id.ibThumbnailComic)
 
+        thumbnailBtn.setOnClickListener {
+            imageLauncher(id, thumbnailPath, thumbnailExtension)
+        }
+    }
+
+    private fun imageLauncher(id: Int, imagePath: String, imageExtension: String) {
         val bundle = bundleOf(
             "id" to id,
-            "thumbnailPath" to thumbnailPath,
-            "thumbnailExtension" to thumbnailExtension
+            "imagePath" to imagePath,
+            "imageExtension" to imageExtension
         )
 
-        thumbnailBtn.setOnClickListener {
-            val navController = findNavController()
-            navController.navigate(R.id.action_comicFragment_to_coverFragment, bundle)
-        }
+        val navController = findNavController()
+        navController.navigate(R.id.action_comicFragment_to_coverFragment, bundle)
     }
 }

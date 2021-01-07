@@ -29,14 +29,14 @@ class CoverFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _view = view
 
-        val thumbnailPath = arguments?.getString("thumbnailPath")
-        val thumbnailExtension = arguments?.getString("thumbnailExtension")
-        val id = arguments?.getInt("id")!!
+        closeBtn()
+
+        val thumbnailPath = arguments?.getString("imagePath")
+        val thumbnailExtension = arguments?.getString("imageExtension")
 
         val fullThumbnailImage =
             DataUtils.imageJoin(path = thumbnailPath!!, extension = thumbnailExtension!!)
 
-        closeBtn(id, thumbnailPath, thumbnailExtension)
 
         val imageView = view.findViewById<ImageView>(R.id.ivImageCover)
 
@@ -48,18 +48,11 @@ class CoverFragment : Fragment() {
             .into(imageView)
     }
 
-    private fun closeBtn(id: Int, thumbnailPath: String, thumbnailExtension: String) {
+    private fun closeBtn() {
         val close = _view.findViewById<ImageButton>(R.id.ibCloseCover)
 
-        val bundle = bundleOf(
-            "id" to id,
-            "thumbnailPath" to thumbnailPath,
-            "thumbnailExtension" to thumbnailExtension
-        )
-
         close.setOnClickListener {
-            val navController = findNavController()
-            navController.navigate(R.id.action_coverFragment_to_comicFragment, bundle)
+            requireActivity().onBackPressed()
         }
     }
 }
