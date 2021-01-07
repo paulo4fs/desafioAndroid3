@@ -15,7 +15,18 @@ import com.paulo.myapplication.R
 import com.paulo.myapplication.data.repository.ComicRepository
 import com.paulo.myapplication.comic.viewmodel.ComicViewModel
 import com.paulo.myapplication.comic.viewmodel.ComicViewModelFactory
-import com.paulo.myapplication.data.model.ComicModel
+import com.paulo.myapplication.data.utils.Constants.DATE
+import com.paulo.myapplication.data.utils.Constants.DESCRIPTION
+import com.paulo.myapplication.data.utils.Constants.ID
+import com.paulo.myapplication.data.utils.Constants.IMAGE_EXTENSION
+import com.paulo.myapplication.data.utils.Constants.IMAGE_PATH
+import com.paulo.myapplication.data.utils.Constants.LANDSCAPE_INCREDIBLE
+import com.paulo.myapplication.data.utils.Constants.PAGE_COUNT
+import com.paulo.myapplication.data.utils.Constants.PORTRAIT_INCREDIBLE
+import com.paulo.myapplication.data.utils.Constants.PRICE
+import com.paulo.myapplication.data.utils.Constants.THUMBNAIL_EXTENSION
+import com.paulo.myapplication.data.utils.Constants.THUMBNAIL_PATH
+import com.paulo.myapplication.data.utils.Constants.TITLE
 import com.paulo.myapplication.data.utils.DataUtils
 import com.squareup.picasso.Picasso
 
@@ -35,25 +46,53 @@ class ComicFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _view = view
 
-        val idArgument = arguments?.getInt("id")!!
-        val thumbnailExtensionArgument = arguments?.getString("thumbnailExtension")
-        val thumbnailPathArgument = arguments?.getString("thumbnailPath")
-
+        val idArgument = arguments?.getInt(ID)!!
+        val thumbnailExtensionArgument = arguments?.getString(THUMBNAIL_EXTENSION)!!
+        val thumbnailPathArgument = arguments?.getString(THUMBNAIL_PATH)!!
+        val imagePathArgument = arguments?.getString(IMAGE_PATH)
+        val imageExtensionArgument = arguments?.getString(IMAGE_EXTENSION)
+        val priceArgument = arguments?.getDouble(PRICE)!!
+        val descriptionArgument = arguments?.getString(DESCRIPTION)
+        val titleArgument = arguments?.getString(TITLE)!!
+        val pageCountArgument = arguments?.getInt(PAGE_COUNT)!!
+        val dateArgument = arguments?.getString(DATE)!!
 
         _comicViewModel = ViewModelProvider(
             this,
             ComicViewModelFactory(ComicRepository())
         ).get(ComicViewModel::class.java)
 
-        _comicViewModel.getItem(idArgument).observe(viewLifecycleOwner, {
-            showItem(it)
-        })
+        showItem(
+            thumbnailExtensionArgument,
+            thumbnailPathArgument,
+            imagePathArgument,
+            imageExtensionArgument,
+            priceArgument,
+            descriptionArgument,
+            titleArgument,
+            pageCountArgument,
+            dateArgument
+        )
 
         backBtn()
-        thumbnailBtn(idArgument, thumbnailPathArgument!!, thumbnailExtensionArgument!!)
+        thumbnailBtn(
+            idArgument,
+            thumbnailPathArgument,
+            thumbnailExtensionArgument
+        )
     }
 
-    private fun showItem(comic: ComicModel) {
+    private fun showItem(
+        thumbnailExtension: String,
+        thumbnailPath: String,
+        imagePath: String?,
+        imageExtension: String?,
+        price: Double,
+        description: String?,
+        title: String,
+        pageCount: Int,
+        date: String
+    ) {
         val thumbnailImage = _view.findViewById<ImageButton>(R.id.ibThumbnailComic)
         val coverImage = _view.findViewById<ImageView>(R.id.ivImageComic)
         val priceText = _view.findViewById<TextView>(R.id.tvPriceComic)
@@ -62,19 +101,18 @@ class ComicFragment : Fragment() {
         val pageCountText = _view.findViewById<TextView>(R.id.tvPageCountComic)
         val dateText = _view.findViewById<TextView>(R.id.tvDateComic)
 
-        ("$ " + comic.prices[0].price).also { priceText.text = it }
-        descriptionText.text = comic.description
-        titleText.text = comic.title
-        pageCountText.text = comic.pageCount.toString()
-        dateText.text = comic.dates[1].date
+        ("$ $price").also { priceText.text = it }
+        descriptionText.text = description
+        titleText.text = title
+        pageCountText.text = pageCount.toString()
+        dateText.text = DataUtils.dateFix(date)
 
-        if (comic.images.isNotEmpty()) {
-            val lastImage = comic.images.size - 1
+        if (!imagePath.isNullOrEmpty() && !imageExtension.isNullOrEmpty()) {
             val fullLandscapeImage =
                 DataUtils.imageJoin(
-                    comic.images[lastImage].path,
-                    getString(R.string.landscape_incredible),
-                    comic.images[lastImage].extension
+                    imagePath,
+                    LANDSCAPE_INCREDIBLE,
+                    imageExtension
                 )
 
             Picasso.get()
@@ -85,7 +123,7 @@ class ComicFragment : Fragment() {
                 .into(coverImage)
 
             coverImage.setOnClickListener {
-                imageLauncher(id, comic.images[lastImage].path, comic.images[lastImage].extension)
+                imageLauncher(id, imagePath, imageExtension)
             }
         } else {
             Picasso.get()
@@ -96,9 +134,9 @@ class ComicFragment : Fragment() {
         }
 
         val fullThumbnail = DataUtils.imageJoin(
-            comic.thumbnail.path,
-            getString(R.string.portrait_incredible),
-            comic.thumbnail.extension
+            thumbnailPath,
+            PORTRAIT_INCREDIBLE,
+            thumbnailExtension
         )
 
         Picasso.get()
@@ -116,7 +154,11 @@ class ComicFragment : Fragment() {
         }
     }
 
-    private fun thumbnailBtn(id: Int, thumbnailPath: String, thumbnailExtension: String) {
+    private fun thumbnailBtn(
+        id: Int,
+        thumbnailPath: String,
+        thumbnailExtension: String,
+    ) {
         val thumbnailBtn = _view.findViewById<ImageButton>(R.id.ibThumbnailComic)
 
         thumbnailBtn.setOnClickListener {
@@ -126,9 +168,9 @@ class ComicFragment : Fragment() {
 
     private fun imageLauncher(id: Int, imagePath: String, imageExtension: String) {
         val bundle = bundleOf(
-            "id" to id,
-            "imagePath" to imagePath,
-            "imageExtension" to imageExtension
+            ID to id,
+            IMAGE_PATH to imagePath,
+            IMAGE_EXTENSION to imageExtension
         )
 
         val navController = findNavController()

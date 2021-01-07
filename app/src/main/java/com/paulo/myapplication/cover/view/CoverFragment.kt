@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.paulo.myapplication.R
 import com.paulo.myapplication.data.utils.DataUtils
 import com.squareup.picasso.Picasso
@@ -31,11 +29,11 @@ class CoverFragment : Fragment() {
 
         closeBtn()
 
-        val thumbnailPath = arguments?.getString("imagePath")
-        val thumbnailExtension = arguments?.getString("imageExtension")
+        val imagePath = arguments?.getString("imagePath")
+        val imageExtension = arguments?.getString("imageExtension")
 
         val fullThumbnailImage =
-            DataUtils.imageJoin(path = thumbnailPath!!, extension = thumbnailExtension!!)
+            DataUtils.imageJoin(path = imagePath!!, extension = imageExtension!!)
 
 
         val imageView = view.findViewById<ImageView>(R.id.ivImageCover)

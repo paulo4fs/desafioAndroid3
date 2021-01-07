@@ -12,29 +12,4 @@ class ComicViewModel(
 ) : ViewModel() {
     private lateinit var _comic: ComicModel
 
-    fun getItem(id: Int) = liveData(Dispatchers.IO) {
-        val response = repository.getComic(id)
-
-        _comic = response.data.results[0]
-
-        imageFix()
-        dateFix()
-        descriptionFix()
-
-        emit(_comic)
-    }
-
-
-    private fun imageFix() {
-        DataUtils.thumbnailFix(_comic)
-        DataUtils.imageFix(_comic)
-    }
-
-    private fun dateFix() {
-        DataUtils.dateFix(_comic)
-    }
-
-    private fun descriptionFix() {
-        DataUtils.descriptionFix(_comic)
-    }
 }

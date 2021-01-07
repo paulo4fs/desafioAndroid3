@@ -17,6 +17,16 @@ import com.paulo.myapplication.comics.viewmodel.ComicsViewModel
 import com.paulo.myapplication.comics.viewmodel.ComicsViewModelFactory
 import com.paulo.myapplication.data.model.ComicModel
 import com.paulo.myapplication.data.repository.ComicsRepository
+import com.paulo.myapplication.data.utils.Constants.DATE
+import com.paulo.myapplication.data.utils.Constants.DESCRIPTION
+import com.paulo.myapplication.data.utils.Constants.ID
+import com.paulo.myapplication.data.utils.Constants.IMAGE_EXTENSION
+import com.paulo.myapplication.data.utils.Constants.IMAGE_PATH
+import com.paulo.myapplication.data.utils.Constants.PAGE_COUNT
+import com.paulo.myapplication.data.utils.Constants.PRICE
+import com.paulo.myapplication.data.utils.Constants.THUMBNAIL_EXTENSION
+import com.paulo.myapplication.data.utils.Constants.THUMBNAIL_PATH
+import com.paulo.myapplication.data.utils.Constants.TITLE
 
 class
 ComicsFragment : Fragment() {
@@ -44,10 +54,26 @@ ComicsFragment : Fragment() {
 
         _comicsList = mutableListOf()
         _comicsAdapter = ComicsAdapter(_comicsList) {
+
+            var imagePath: String? = null
+            var imageExtension: String? = null
+            if (it.images.isNotEmpty()) {
+                val size = it.images.size
+                imagePath = it.images[size - 1].path
+                imageExtension = it.images[size - 1].extension
+            }
+
             val bundle = bundleOf(
-                "id" to it.id,
-                "thumbnailExtension" to it.thumbnail.extension,
-                "thumbnailPath" to it.thumbnail.path
+                ID to it.id,
+                THUMBNAIL_EXTENSION to it.thumbnail.extension,
+                THUMBNAIL_PATH to it.thumbnail.path,
+                IMAGE_PATH to imagePath,
+                IMAGE_EXTENSION to imageExtension,
+                PRICE to it.prices[0].price,
+                DESCRIPTION to it.description,
+                TITLE to it.title,
+                PAGE_COUNT to it.pageCount.toString(),
+                DATE to it.dates[1].date
             )
             val navController = findNavController()
             navController.navigate(R.id.action_comicsFragment_to_comicFragment, bundle)

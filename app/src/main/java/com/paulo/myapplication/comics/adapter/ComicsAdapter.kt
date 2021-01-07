@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.paulo.myapplication.R
 import com.paulo.myapplication.data.model.ComicModel
+import com.paulo.myapplication.data.utils.Constants.PORTRAIT_MEDIUM
 import com.paulo.myapplication.data.utils.DataUtils
 
 class ComicsAdapter(
@@ -21,7 +22,7 @@ class ComicsAdapter(
     override fun onBindViewHolder(holder: ComicsViewHolder, position: Int) {
         val item = comics[position]
 
-        val portraitMedium = "/portrait_medium."
+        val portraitMedium = PORTRAIT_MEDIUM
 
         val issueNumber = item.issueNumber
 
