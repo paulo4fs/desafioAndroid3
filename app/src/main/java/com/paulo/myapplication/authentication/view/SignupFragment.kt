@@ -1,4 +1,4 @@
-package com.paulo.myapplication.signup.view
+package com.paulo.myapplication.authentication.view
 
 import android.app.Activity
 import android.os.Bundle

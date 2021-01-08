@@ -1,4 +1,4 @@
-package com.paulo.myapplication.login.view
+package com.paulo.myapplication.authentication.view
 
 import android.app.Activity
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -15,6 +16,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.paulo.myapplication.R
+import com.paulo.myapplication.authentication.utils.AuthUtils
 
 class LoginFragment : Fragment() {
     private lateinit var _view: View
@@ -37,15 +39,26 @@ class LoginFragment : Fragment() {
             setEmail(argEmail)
         }
 
+        checkPref()
         btnSignup()
         btnLogin()
     }
 
+    private fun checkPref() {
+        if (AuthUtils.checkedSavedPref(requireActivity())) {
+            val navController = findNavController()
+            navController.navigate(R.id.action_loginFragment_to_comicsFragment)
+        }
+    }
+
     private fun btnLogin() {
         val loginBtb = _view.findViewById<MaterialButton>(R.id.btnLoginLogin)
+        val checked = _view.findViewById<CheckBox>(R.id.cbCheckBoxLogin)
+
         loginBtb.setOnClickListener {
             errorHandler()
             navLogin()
+            AuthUtils.savePref(requireActivity(), checked.isChecked)
         }
     }
 

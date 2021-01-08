@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="@dimen/dim20dp"
-    tools:context=".login.view.LoginFragment">
+    tools:context=".authentication.view.LoginFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -78,12 +78,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/cbCheckBoxLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:buttonTint="@color/colorRed"
                     android:checked="true"
                     android:fontFamily="@font/roboto"
-                    android:text="@string/remember" />
+                    android:text="@string/remember"
+                    app:buttonTint="@color/colorRed" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLoginLogin"

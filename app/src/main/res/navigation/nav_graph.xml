@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.paulo.myapplication.login.view.LoginFragment"
+        android:name="com.paulo.myapplication.authentication.view.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -16,11 +16,13 @@
         <action
             android:id="@+id/action_loginFragment_to_comicsFragment"
             app:destination="@id/comicsFragment"
-            app:exitAnim="@android:anim/slide_out_right" />
+            app:exitAnim="@android:anim/slide_out_right"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.paulo.myapplication.signup.view.SignupFragment"
+        android:name="com.paulo.myapplication.authentication.view.SignupFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup">
         <action

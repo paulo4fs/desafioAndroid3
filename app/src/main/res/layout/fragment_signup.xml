@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBlack"
     android:orientation="vertical"
-    tools:context=".signup.view.SignupFragment">
+    tools:context=".authentication.view.SignupFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
